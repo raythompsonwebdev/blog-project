@@ -1,0 +1,90 @@
+body{
+    margin:0;
+    padding:0;
+    
+}
+
+h1{
+    text-align:center;
+}
+
+
+main{
+    margin:o;
+    padding:0;
+}
+
+article.blog-post{
+    background:#d7e;
+    color:#000;
+    display:block;
+    height:auto;
+    width:80%;
+    margin:0.5em auto;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+header.blog-header{
+    background:#000;
+    width:99%;
+    display:block;
+    height:auto;
+    padding:0.25em;
+}
+
+header.blog-header h1.blog-title{
+    width:100%;
+    display:block;
+    line-height:40px;
+    text-align:center;
+    font-size:1.3em;
+    height:auto;
+    background-color:#fff;
+    color:#000;
+   
+}
+
+header.blog-header h2{
+    width:100%;
+    display:block;
+    line-height:40px;
+    text-align:left;
+    font-size:1em;
+    height:auto;
+    background-color:#fff;
+    color:#000;
+    text-indent:0.5em;
+}
+
+article.blog-post p{
+    width:96%;
+    display:block;
+    line-height:25px;
+    text-align:left;
+    font-size:0.9em;
+    height:auto;
+    background:#fff;
+    padding:0.5em;
+    margin:0.5em auto;
+    min-height:100px;
+
+}
+
+footer.blog-footer{
+    width:100%;
+    display:block;
+    line-height:25px;
+    text-align:left;
+    font-size:0.9em;
+    height:50px;
+    background:#000;
+    color:#fff;
+
+}
+
+footer.blog-footer time{
+    line-height:30px;
+    color:#fff;
+    margin:auto;
+}
