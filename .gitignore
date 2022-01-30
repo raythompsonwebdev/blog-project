@@ -2,3 +2,4 @@ user-story-1.md
 user-story-2.md
 user-story-3.md
 node_modules/
+cypress/*
