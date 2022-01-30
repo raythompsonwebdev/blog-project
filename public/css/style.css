@@ -1,7 +1,7 @@
 body{
     margin:0;
     padding:0;
-    
+      
 }
 
 h1{
@@ -14,12 +14,46 @@ main{
     padding:0;
 }
 
+main form#add-blog{
+  display:flex;
+  flex-flow: column;
+  justify-content: center;
+  width:50%;
+  margin:1em auto;
+}
+
+main form#add-blog label{
+  width:100%;
+  line-height:40px;
+  display:block;
+}
+
+main form#add-blog input{
+  width:100%;
+  line-height:40px;
+  height:40px;
+  display:block;
+}
+
+main form#add-blog button{
+  width:80%;
+
+  height:50px;
+  display:block;
+  margin:1em auto;
+  font-size:1.5em;
+}
+
+main form#add-blog button:hover{
+  cursor:pointer;
+}
+
 article.blog-post{
     background:#d7e;
     color:#000;
     display:block;
     height:auto;
-    width:80%;
+    width:60%;
     margin:0.5em auto;
     font-family:Arial, Helvetica, sans-serif;
 

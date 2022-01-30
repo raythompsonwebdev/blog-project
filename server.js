@@ -67,7 +67,8 @@ server.get("/add-post", (request, response) => {
   <html>
     <head>
       <meta charset="utf-8">
-      <title>Post!</title>
+      <title>Add a Post!</title>
+      <link href="css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
     <nav>
@@ -83,20 +84,20 @@ server.get("/add-post", (request, response) => {
     </nav>
     <main>
       <h1>Create a Post</h1>
-      <form method="POST">
-        <label id="name">User name</label>
+      <form id="add-blog" method="POST">
+        <label for="name">User name</label>
         <input id="name" name="name">
 
-        <label id="title">Blog Title</label>
+        <label for="title">Blog Title</label>
         <input id="title" name="title">
 
-        <label id="mood">Mood</label>
+        <label for="mood">Mood</label>
         <input id="mood" name="moode">
 
-        <label id="blogpost">Blog Post</label>
-        <textarea id="blogpost" name="blogpost"></textarea>
+        <label for="blogpost">Blog Post</label>
+        <textarea id="blogpost" name="blogpost" rows="10"></textarea>
 
-        <label id="date">Time</label>
+        <label for="date">Time</label>
         <input type="datetime-local" id="date"
        name="date" value="2018-06-12T19:30"
        min="2018-06-07T00:00" max="2018-06-14T00:00">
