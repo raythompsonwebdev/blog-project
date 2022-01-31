@@ -1,8 +1,10 @@
 const express = require("express");
 //const path = require("path");
-const posts = require("./posts.js");
-
+const db = require("./database/connection.js");
+//const posts = require("./posts.js");
 const server = express();
+
+const bodyParser = express.urlencoded({ extended: false });
 
 // serve static files
 const staticHandler = express.static("public");
@@ -12,54 +14,55 @@ server.get("/", (request, response) => {
   //assign post items to empty string
   let postitems = "";
 
-  // loop over array of post object key and value entries ;
-  for (const post of Object.entries(posts)) {
-    // deconstruct array in post constant
-    const [user, postItem] = post;
-
-    console.log(postItem);
-    // add postItem values to post
-    postitems += `<article class="blog-post">
-                <header class="blog-header">
-                  <h1 class="blog-title">${postItem.title}</h1>
-                  <h2>User : ${user}</h2>
-                </header>
-                
-                <p>${postItem.blogpost}</p>
-                <footer class="blog-footer">Time submitted: <time>${postItem.date}</time></footer>      
-              </article>`;
-  }
-  const html = `
-  <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Say Something Nice!</title>
-        <link href="css/style.css" type="text/css" rel="stylesheet"> 
-      </head>
-      <body>
-      <nav>
-        <ul>
-        <li>
-            <a href="/">Home</a>
-          </li>
+  db.query("SELECT * FROM blogpost", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    //console.log(results.rows);
+    const posts = results.rows;
+    // loop over array of post object key and value entries ;
+    posts.map((post) => {
+      // add postItem values to post
+      postitems += `<article class="blog-post">
+                  <header class="blog-header">
+                    <h1 class="blog-title">${post.blogtitle}</h1>
+                    <h2>User : ${post.name}</h2>
+                  </header>
+                  
+                  <p>${post.blogpost}</p>
+                  <footer class="blog-footer">Time submitted: <time>${post.date}</time></footer>      
+                </article>`;
+    });
+    const html = `
+    <!doctype html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <title>Say Something Nice!</title>
+          <link href="css/style.css" type="text/css" rel="stylesheet"> 
+        </head>
+        <body>
+        <nav>
+          <ul>
           <li>
-            <a href="/add-post">add post</a>
-          </li>
-          
-        </ul>
-      </nav>
-      <main>
-        <h1>Say Something Nice!</h1>
-          ${postitems}
-        </main>
-      </body>
-    </html>
-  `;
-  response.send(html);
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/add-post">add post</a>
+            </li>
+            
+          </ul>
+        </nav>
+        <main>
+          <h1>Say Something Nice!</h1>
+            ${postitems}
+          </main>
+        </body>
+      </html>
+    `;
+    response.send(html);
+  });
 });
-
-const bodyParser = express.urlencoded({ extended: false });
 
 server.get("/add-post", (request, response) => {
   const html = `
@@ -88,19 +91,14 @@ server.get("/add-post", (request, response) => {
         <label for="name">User name</label>
         <input id="name" name="name">
 
-        <label for="title">Blog Title</label>
-        <input id="title" name="title">
+        <label for="blogtitle">Blog Title</label>
+        <input id="blogtitle" name="blogtitle">
 
         <label for="mood">Mood</label>
         <input id="mood" name="moode">
 
         <label for="blogpost">Blog Post</label>
         <textarea id="blogpost" name="blogpost" rows="10"></textarea>
-
-        <label for="date">Time</label>
-        <input type="datetime-local" id="date"
-       name="date" value="2018-06-12T19:30"
-       min="2018-06-07T00:00" max="2018-06-14T00:00">
 
         <button>Search</button>
       </form>
@@ -112,11 +110,21 @@ server.get("/add-post", (request, response) => {
 });
 
 server.post("/add-post", bodyParser, (request, response) => {
-  const newPost = request.body;
-  const name = newPost.name.toLowerCase();
-  console.log(newPost);
-  posts[name] = newPost;
+  const { name, blogtitle, blogpost, mood } = request.body;
+  db.query(
+    `INSERT INTO blogpost(name, blogtitle, blogpost, mood) VALUES ($1, $2, $3, $4)`,
+    [name, blogtitle, blogpost, mood]
+  ).then((data) => {
+    console.log(data);
+  });
+  //const name = newPost.name.toLowerCase();
+  //posts[name] = newPost;
   response.redirect("/");
+});
+
+//error handling
+server.use((request, response) => {
+  response.status(404).send("<h1>Not found</h1>");
 });
 
 const PORT = 3333;

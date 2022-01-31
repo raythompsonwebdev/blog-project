@@ -1,0 +1,25 @@
+// index.js
+require("dotenv").config();
+
+//console.log(process.env);
+
+const { Pool } = require("pg");
+
+// DB URL should either be read from .env in development
+// or set as part of production deployment (e.g. on Heroku)
+// if (!process.env.DATABASE_URL) {
+//   throw new Error("Missing DATABASE_URL env var");
+// }
+
+// Connect to the database
+// and create a pool of available connections to support simultaneous requests
+const db = new Pool({
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: 5432,
+});
+
+// export the pool object so we can query the DB in other files
+module.exports = db;

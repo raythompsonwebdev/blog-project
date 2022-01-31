@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+ 
   "scripts": {
     "test": "cypress open",
     "dev": "nodemon server.js",
@@ -12,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "pg": "^8.7.1"
   },
