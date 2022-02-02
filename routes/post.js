@@ -10,19 +10,38 @@ function get(request, response) {
     db.query("SELECT * FROM blogpost WHERE id = $1", [id]).then((result) => {
       const postItem = result.rows[0];
 
+      // const html = layout(
+      //   "Posts",
+      //   ` <h1>Blog posts</h1>
+      //     <article class="blog-post">
+      //       <header class="blog-header">
+      //         <h1 class="blog-title">${postItem.blogtitle}</h1>
+      //         <h2>User : ${postItem.name}</h2>
+      //       </header>
+
+      //       <p>${postItem.blogpost}</p>
+      //       <footer class="blog-footer">Time submitted: <time>${postItem.date}</time></footer>
+      //     </article>
+      //     <a href=/post/${postItem.id}>Delete Post</a>
+      //  `
+      // );
+
       const html = layout(
         "Posts",
-        ` <h1>Blog posts</h1>
-          <article class="blog-post">
-            <header class="blog-header">
-              <h1 class="blog-title">${postItem.blogtitle}</h1>
-              <h2>User : ${postItem.name}</h2>
-            </header>
-            
-            <p>${postItem.blogpost}</p>          
-            <footer class="blog-footer">Time submitted: <time>${postItem.date}</time></footer>      
-          </article>
-          <a href=/post/${postItem.id}>Delete Post</a>
+        `<div class="col-md-6 mx-auto"> 
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">${postItem.name}</strong>
+          <h3 class="mb-0">${postItem.blogtitle}</h3>
+          <div class="mb-1 text-muted">${postItem.date}</div>
+          <p class="card-text mb-auto">${postItem.blogpost}</p>
+          <a href="/posts/${postItem.id}" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>            
+        </div>
+      </div>
+      </div>
        `
       );
 
