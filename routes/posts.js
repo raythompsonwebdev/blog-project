@@ -8,15 +8,7 @@ function get(request, response) {
       }
       //console.log(results.rows);
       const posts = results.rows;
-      const postItems = posts.map((post) => {
-        return /*html*/ `
-          <li>
-          <p>${post.blogpost}</p>
-          <p>${post.name}</p>
-          </li>
-        `;
-      });
-      response.send(`<ul>${postItems.join("")}</ul>`);
+      response.send(posts);
     });
   } catch (err) {
     console.log(err);

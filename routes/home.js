@@ -23,7 +23,7 @@ const get = (request, response) => {
                     </header>
                     
                     <p>${post.blogpost}</p>
-                    <a href=/post/${post.id}>got to post</a>
+                    <a href=/posts/${post.id}>got to post</a>
                     <footer class="blog-footer">Time submitted: <time>${post.date}</time></footer>      
                   </article>`;
         });
