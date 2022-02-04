@@ -28,7 +28,7 @@ server.get("/posts", home.get);
 server.get("/posts/:id", post.get);
 
 //delete blog post
-server.delete("/posts/:id", deletePost.post);
+server.post("/posts/:id", deletePost.post);
 
 // display add blog post form
 server.get("/posts-add", createPost.get);
