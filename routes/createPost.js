@@ -36,7 +36,7 @@ function post(request, response) {
     console.log(data);
   });
 
-  response.redirect("/");
+  response.redirect("/posts");
 }
 
 module.exports = { get, post };

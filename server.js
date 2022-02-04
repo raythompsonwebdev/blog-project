@@ -2,7 +2,6 @@ const express = require("express");
 const home = require("./routes/home.js");
 const createPost = require("./routes/createPost.js");
 const deletePost = require("./routes/deletePost.js");
-const posts = require("./routes/posts.js");
 const post = require("./routes/post.js");
 const path = require("path");
 //const { append } = require("express/lib/response");
@@ -25,14 +24,11 @@ server.use(staticHandler);
 //display blog posts
 server.get("/posts", home.get);
 
-//get all blogs
-//server.get("/posts", posts.get);
-
 // get single blog post
 server.get("/posts/:id", post.get);
 
 //delete blog post
-server.post("/posts/:id", deletePost.post);
+server.delete("/posts/:id", deletePost.post);
 
 // display add blog post form
 server.get("/posts-add", createPost.get);

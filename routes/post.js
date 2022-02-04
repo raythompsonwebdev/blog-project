@@ -10,22 +10,6 @@ function get(request, response) {
     db.query("SELECT * FROM blogpost WHERE id = $1", [id]).then((result) => {
       const postItem = result.rows[0];
 
-      // const html = layout(
-      //   "Posts",
-      //   ` <h1>Blog posts</h1>
-      //     <article class="blog-post">
-      //       <header class="blog-header">
-      //         <h1 class="blog-title">${postItem.blogtitle}</h1>
-      //         <h2>User : ${postItem.name}</h2>
-      //       </header>
-
-      //       <p>${postItem.blogpost}</p>
-      //       <footer class="blog-footer">Time submitted: <time>${postItem.date}</time></footer>
-      //     </article>
-      //     <a href=/post/${postItem.id}>Delete Post</a>
-      //  `
-      // );
-
       const html = layout(
         "Posts",
         `<div class="col-md-6 mx-auto"> 
