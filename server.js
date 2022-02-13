@@ -2,11 +2,10 @@ const express = require("express");
 const home = require("./routes/home.js");
 const createPost = require("./routes/createPost.js");
 const deletePost = require("./routes/deletePost.js");
+const updatePost = require("./routes/updatePost.js");
 const post = require("./routes/post.js");
 const path = require("path");
 //const { append } = require("express/lib/response");
-//const db = require("./database/connection.js");
-//const posts = require("./posts.js");
 const server = express();
 
 //Middleware
@@ -21,6 +20,10 @@ const PORT = process.env.PORT || 3333;
 const staticHandler = express.static(path.join(__dirname, "public"));
 server.use(staticHandler);
 
+// this is for images folder on path images
+const staticImages = express.static(path.join(__dirname, "public/images"));
+server.use(staticImages);
+
 //display blog posts
 server.get("/posts", home.get);
 
@@ -34,6 +37,11 @@ server.post("/posts/:id", deletePost.post);
 server.get("/posts-add", createPost.get);
 // create blog post
 server.post("/posts-add", createPost.post);
+
+// update single blog post
+server.get("/posts-update", updatePost.get);
+// update single blog post
+server.put("/posts-update", updatePost.post);
 
 //error handling
 server.use((request, response) => {

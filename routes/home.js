@@ -40,6 +40,13 @@ const get = (request, response) => {
           `
         );
 
+        // set cookie
+        response.cookie("hello", "this is my cookie", {
+          httpOnly: true,
+          maxAge: 1000 * 60, // 60,000ms (60s)
+          sameSite: "lax",
+        });
+
         response.send(html);
       }
     });

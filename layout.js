@@ -24,7 +24,7 @@ function layout(title, content) {
             <a class="nav-link" href="/posts-add">Add Post</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link href="">Disabled</a>
+            <a class="nav-link href="/posts-update">Update Blog</a>
           </li>
           
         </ul>

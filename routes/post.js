@@ -3,16 +3,12 @@ const layout = require("../layout.js");
 
 function get(request, response) {
   try {
-    //const { id } = request.params;
-
+    // convert string to number
     const id = parseInt(request.params.id);
-
-    console.log(id);
 
     db.query("SELECT * FROM blogpost WHERE id = $1", [id]).then((result) => {
       const postItem = result.rows[0];
 
-      //console.log(result.rows[0]);
       const html = layout(
         "Posts",
         `<div class="col-md-6 mx-auto"> 
