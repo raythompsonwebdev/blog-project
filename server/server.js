@@ -34,12 +34,12 @@ server.get("/posts/:id", post.get);
 server.post("/posts/:id", deletePost.post);
 
 // display add blog post form
-server.get("/posts-add", createPost.get);
+//server.get("/posts-add", createPost.get);
 // create blog post
 server.post("/posts-add", createPost.post);
 
 // update single blog post
-server.get("/posts-update", updatePost.get);
+//server.get("/posts-update", updatePost.get);
 // update single blog post
 server.put("/posts-update", updatePost.post);
 
