@@ -23,8 +23,8 @@ ReactDOM.render(
       <Header />
         <MainNav />
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/" exact element={<App />} />
+          <Route path="/blog" exact element={<Blog />} />
         </Routes>
         <Footer /> 
       </BrowserRouter>  

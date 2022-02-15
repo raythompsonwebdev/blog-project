@@ -4,16 +4,12 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line func-style
 function Footer() {
   return (
-    <footer className="py-3 my-4">
-    <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-      <li className="nav-item"><Link to="/" className="nav-link px-2 text-muted">Home</Link></li>
-      <li className="nav-item"><Link to="/" className="nav-link px-2 text-muted">Features</Link></li>
-      <li className="nav-item"><Link to="/" className="nav-link px-2 text-muted">Pricing</Link></li>
-      <li className="nav-item"><Link to="/" className="nav-link px-2 text-muted">FAQs</Link></li>
-      <li className="nav-item"><Link to="/" className="nav-link px-2 text-muted">About</Link></li>
-    </ul>
-    <p className="text-center text-muted">&copy; 2021 Company, Inc</p>
-  </footer>
+    <footer className="blog-footer">
+      <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <Link to="/">Back to top</Link>
+      </p>
+    </footer>
   );
 }
 
