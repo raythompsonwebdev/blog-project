@@ -1,7 +1,36 @@
-import React from "react";
+import React, {useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function App() {
+
+  //const [productData , setproductData] = useState([]);
+  //const [visibility, setVisibility]  = useState(false);
+  //const [lastIndex, setLastIndex] = useState(0);
+ 
+  // const loadData = async () => {
+  //   const fetchProducts = fetch(`/posts`);
+  //   const data = await fetchProducts.json();  
+  // }
+
+  useEffect(() => {
+    const fetchProducts = fetch(`/post`);
+    // const fetchProducts = fetch(`./productdata.json`);
+    fetchProducts
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("no data provided");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      });
+  });
+
   return (
     <div>
       <div className="jumbotron p-4 p-md-5 text-white rounded bg-dark">

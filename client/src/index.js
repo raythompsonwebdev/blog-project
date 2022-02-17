@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import MainNav from './components/MainNav';
 import App from './pages/App';
 import Blog from './pages/Blog';
+import Createblog from './pages/Createblog';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" exact element={<App />} />
           <Route path="/blog" exact element={<Blog />} />
+          <Route path="/create-blog" exact element={<Createblog />} />
         </Routes>
         <Footer /> 
       </BrowserRouter>  
