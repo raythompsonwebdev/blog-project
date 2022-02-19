@@ -32,13 +32,14 @@ export default function Blogform() {
   }
 
   return (
-    <form id="form" onSubmit={submit}>
+    <form id="create-blog" onSubmit={submit}>
       <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
-      <div className="form-floating">
+      <div className="form-group">
         <label htmlFor="author">
           Author:&#32;
           <input
+            className="form-control"
             type="text"
             name="author"
             id="author"
@@ -49,13 +50,14 @@ export default function Blogform() {
         </label>
       </div>
 
-      <div className="form-floating">
+      <div className="form-group">
         <label htmlFor="posttitle">
           Post Title:&#32;
           <input
+            className="form-control"
             type="posttitle"
-            name="posttitlel"
-            id="posttitlel"
+            name="posttitle"
+            id="posttitle"
             value={posttitle}
             onChange={handlePosttitle}
             required
@@ -63,23 +65,29 @@ export default function Blogform() {
         </label>
       </div>
 
-      <div className="form-floating">
+      <div className="form-group">
         <label htmlFor="post">
-          Message:&#32;
+          <span>Message:&#32;</span>
           <textarea
             value={post}
             onChange={handlePost}
             name="post"
             id="post"
-            cols="35"
             rows="10"
           />
         </label>
       </div>
 
-      <div className="form-floating">
+      <div className="form-group">
         <label htmlFor="date">
-          <input type="date" id="date" name="date" onChange={handleDate} />
+          Date :
+          <input
+            className="form-control"
+            type="date"
+            id="date"
+            name="date"
+            onChange={handleDate}
+          />
         </label>
       </div>
 

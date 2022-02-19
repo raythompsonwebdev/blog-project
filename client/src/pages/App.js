@@ -33,7 +33,7 @@ function App() {
   });
 
   return (
-    <div>
+    <main role="main">
       <div className="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div className="col-md-6 px-0">
           <h1 className="display-4 font-italic">
@@ -51,6 +51,7 @@ function App() {
           </p>
         </div>
       </div>
+      <br />
       <div className="row mb-2">
         <div className="col-md-6">
           <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -199,7 +200,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
