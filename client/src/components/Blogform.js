@@ -2,10 +2,12 @@ import { React, useState } from "react";
 
 // eslint-disable-next-line func-style
 export default function Blogform() {
-  const { author, setAuthor } = useState(" ");
-  const { posttitle, setPosttitle } = useState(" ");
-  const { post, setPost } = useState(" ");
-  const { date, setDate } = useState(" ");
+  const [author, setAuthor] = useState(" ");
+  const [posttitle, setPosttitle] = useState(" ");
+  const [post, setPost] = useState(" ");
+  const [date, setDate] = useState(" ");
+
+  // document.getElementById("datePicker").value = new Date();
 
   function handleAuthor(e) {
     setAuthor(e.target.value);
@@ -21,6 +23,8 @@ export default function Blogform() {
 
   function handleDate(e) {
     setDate(e.target.value);
+    // eslint-disable-next-line no-console
+    console.log(e.target.value, date);
   }
 
   function submit(e) {
@@ -79,14 +83,15 @@ export default function Blogform() {
       </div>
 
       <div className="form-group">
-        <label htmlFor="date">
+        <label htmlFor="datePicker">
           Date :
           <input
             className="form-control"
             type="date"
-            id="date"
+            id="datePicker"
             name="date"
             onChange={handleDate}
+            value={new Date()}
           />
         </label>
       </div>
