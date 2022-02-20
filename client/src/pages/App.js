@@ -6,16 +6,15 @@ import BlogsnippetContainer from "../components/BlogsnippetContainer";
 function App() {
   const [blogData, setblogData] = useState([]);
   // const [visibility, setVisibility]  = useState(false);
-  // const [lastIndex, setLastIndex] = useState(0);
+  const [lastIndex, setLastIndex] = useState(0);
 
   // const loadData = async () => {
   //   const fetchProducts = fetch(`/posts`);
   //   const data = await fetchProducts.json();
   // }
+  const fetchProducts = fetch(`http://localhost:3333/posts`);
 
   useEffect(() => {
-    const fetchProducts = fetch(`http://localhost:3333/posts`);
-    // const fetchProducts = fetch(`./productdata.json`);
     fetchProducts
       .then((response) => {
         if (!response.ok) {
@@ -26,13 +25,15 @@ function App() {
       .then((data) => {
         // eslint-disable-next-line no-console
         // console.log(data);
-        // const returnedData = data.map((blog, index) => {
-        //   // eslint-disable-next-line no-param-reassign
-        //   blog.prodId = index;
-        //   setLastIndex(lastIndex);
-        //   return blog;
-        // });
-        setblogData(data);
+
+        const returnedData = data.map((blog, index) => {
+          // eslint-disable-next-line no-param-reassign
+          blog.prodId = index;
+          setLastIndex(index);
+          return blog;
+        });
+
+        setblogData(returnedData);
 
         // eslint-disable-next-line no-console
       })

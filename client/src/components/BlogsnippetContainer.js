@@ -5,22 +5,19 @@ import Blogsnippet from "./Blogsnippet";
 function BlogsnippetContainer(props) {
   const { blogData } = props;
   // eslint-disable-next-line no-console
-  console.log(blogData);
-  const Blog = blogData
-    .slice(0, 8)
-    .map((item) => (
-      <Blogsnippet
-        key={item.id}
-        author={item.author}
-        username={item.username}
-        blogtitle={item.blogtitle}
-        blogpost={item.blogpost}
-        mood={item.mood}
-        submitted={item.submitted}
-      />
-    ));
+  const Blog = blogData.map((item) => (
+    <Blogsnippet
+      key={item.id}
+      author={item.author}
+      username={item.username}
+      blogtitle={item.blogtitle}
+      blogpost={item.blogpost}
+      mood={item.mood}
+      submitted={item.submitted}
+    />
+  ));
 
-  return <div>{Blog}</div>;
+  return Blog;
 }
 
 BlogsnippetContainer.defaultProps = {
