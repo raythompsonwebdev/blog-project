@@ -1,11 +1,16 @@
-const express = require("express");
-const home = require("./routes/home.js");
-const createPost = require("./routes/createPost.js");
-const deletePost = require("./routes/deletePost.js");
-const updatePost = require("./routes/updatePost.js");
-const post = require("./routes/post.js");
-const path = require("path");
-//const { append } = require("express/lib/response");
+import express from "express";
+import home from "./routes/home.js";
+import createPost from "./routes/createPost.js";
+import deletePost from "./routes/deletePost.js";
+import updatePost from "./routes/updatePost.js";
+import post from "./routes/post.js";
+import path from "path";
+import {fileURLToPath} from 'url';
+
+//set up file paths
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const server = express();
 
 //Middleware
@@ -25,23 +30,19 @@ const staticImages = express.static(path.join(__dirname, "public/images"));
 server.use(staticImages);
 
 //display blog posts
-server.get("/posts", home.get);
+server.get("/posts", home);
 
 // get single blog post
-server.get("/posts/:id", post.get);
+server.get("/posts/:id", post);
 
 //delete blog post
-server.post("/posts/:id", deletePost.post);
+server.post("/posts/:id", deletePost);
 
-// display add blog post form
-//server.get("/posts-add", createPost.get);
 // create blog post
-server.post("/posts-add", createPost.post);
+server.post("/create-posts", createPost);
 
 // update single blog post
-//server.get("/posts-update", updatePost.get);
-// update single blog post
-server.put("/posts-update", updatePost.post);
+server.put("/posts-update", updatePost);
 
 //error handling
 server.use((request, response) => {

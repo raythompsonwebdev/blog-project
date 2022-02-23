@@ -21,7 +21,7 @@ ReactDOM.render(
         <MainNav />
         <Routes>
           <Route path="/" exact element={<App />} />
-          <Route path="/blog" exact element={<Blog />} />
+          <Route path="/posts/:id" exact element={<Blog />} />
           <Route path="/create-blog" exact element={<Createblog />} />
         </Routes>
         <Footer />

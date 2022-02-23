@@ -1,6 +1,6 @@
-const db = require("../database/connection.js");
+import db  from "../database/connection.js";
 
-function post(request, response) {
+export default function post(request, response) {
   const id = parseInt(request.params.id);
   db.query("DELETE FROM blogpost WHERE id = $1", [id], (err, res) => {
     if (err) {
@@ -12,4 +12,4 @@ function post(request, response) {
   response.redirect("/posts");
 }
 
-module.exports = { post };
+//module.exports = { post };

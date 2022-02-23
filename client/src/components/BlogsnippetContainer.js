@@ -13,6 +13,7 @@ function BlogsnippetContainer(props) {
       blogtitle={item.blogtitle}
       blogpost={item.blogpost}
       mood={item.mood}
+      prodId={item.prodId}
       submitted={item.submitted}
     />
   ));
@@ -28,10 +29,11 @@ BlogsnippetContainer.propTypes = {
   blogData: PropTypes.arrayOf(
     PropTypes.shape({
       author: PropTypes.string,
-      name: PropTypes.string,
+      username: PropTypes.string,
       blogtitle: PropTypes.string,
       blogpost: PropTypes.string,
       mood: PropTypes.string,
+      prodId: PropTypes.string,
       submitted: PropTypes.string,
     })
   ),

@@ -1,7 +1,7 @@
-const db = require("../database/connection.js");
-//const layout = require("../layout.js");
+//const db = require("../database/connection.js");
+import db  from "../database/connection.js";
 
-const get = (request, response) => {
+export default function get (request, response) {
   try {
     
     db.query("SELECT * FROM blogpost", (error, results) => {
@@ -29,4 +29,4 @@ const get = (request, response) => {
   }
 };
 
-module.exports = { get };
+// module.exports = { get };

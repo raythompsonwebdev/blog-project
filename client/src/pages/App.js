@@ -12,9 +12,9 @@ function App() {
   //   const fetchProducts = fetch(`/posts`);
   //   const data = await fetchProducts.json();
   // }
-  const fetchProducts = fetch(`http://localhost:3333/posts`);
 
   useEffect(() => {
+    const fetchProducts = fetch(`http://localhost:3333/posts`);
     fetchProducts
       .then((response) => {
         if (!response.ok) {
@@ -24,7 +24,7 @@ function App() {
       })
       .then((data) => {
         // eslint-disable-next-line no-console
-        // console.log(data);
+        console.log(data);
 
         const returnedData = data.map((blog, index) => {
           // eslint-disable-next-line no-param-reassign
@@ -36,12 +36,13 @@ function App() {
         setblogData(returnedData);
 
         // eslint-disable-next-line no-console
+        console.log(lastIndex);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.log(error);
       });
-  });
+  }, []);
 
   // eslint-disable-next-line no-console
   // console.log(blogData);

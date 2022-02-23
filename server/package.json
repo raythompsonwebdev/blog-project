@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "proxy": "http://localhost:3000/",
+  "type":"module",
   "scripts": {
     "test": "cypress open",
     "dev": "nodemon server.js",

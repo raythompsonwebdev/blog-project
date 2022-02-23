@@ -1,7 +1,7 @@
-const db = require("../database/connection.js");
-//const layout = require("../layout.js");
+//const db = require("../database/connection.js");
+import db  from "../database/connection.js";
 
-function get(request, response) {
+export default function get(request, response) {
   try {
     // convert string to number
     const id = parseInt(request.params.id);
@@ -9,6 +9,9 @@ function get(request, response) {
     db.query("SELECT * FROM blogpost WHERE id = $1", [id]).then((result) => {
       
       const postItem = result.rows[0];
+
+      response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      response.setHeader("Vary", "Origin");
      
       response.send(postItem);
     });
@@ -17,4 +20,4 @@ function get(request, response) {
   }
 }
 
-module.exports = { get };
+//module.exports = { get };

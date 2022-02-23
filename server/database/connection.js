@@ -1,7 +1,10 @@
 // index.js
-require("dotenv").config();
+//require("dotenv").config();
+import 'dotenv/config'
 
-const { Pool } = require("pg");
+//const { Pool } = require("pg");
+import pg from "pg";
+const { Pool } = pg;
 
 // Connect to the database
 const db = new Pool({
@@ -13,4 +16,5 @@ const db = new Pool({
 });
 
 // export the pool object so we can query the DB in other files
-module.exports = db;
+//module.exports = db;
+export default db;
