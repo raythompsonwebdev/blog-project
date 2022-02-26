@@ -33,7 +33,7 @@ BlogsnippetContainer.propTypes = {
       blogtitle: PropTypes.string,
       blogpost: PropTypes.string,
       mood: PropTypes.string,
-      prodId: PropTypes.string,
+      prodId: PropTypes.number,
       submitted: PropTypes.string,
     })
   ),

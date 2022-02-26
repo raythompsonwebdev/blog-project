@@ -7,11 +7,14 @@ import post from "./routes/post.js";
 import path from "path";
 import {fileURLToPath} from 'url';
 
+
+
 //set up file paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const server = express();
+
 
 //Middleware
 server.use(express.json());
@@ -39,7 +42,7 @@ server.get("/posts/:id", post);
 server.post("/posts/:id", deletePost);
 
 // create blog post
-server.post("/create-posts", createPost);
+server.post("/create-post", createPost);
 
 // update single blog post
 server.put("/posts-update", updatePost);

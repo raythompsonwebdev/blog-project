@@ -17,7 +17,7 @@ function MainNav() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/create-blog">
+              <Link className="nav-link" to="/create-post">
                 Create Blog
               </Link>
             </li>

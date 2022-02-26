@@ -22,7 +22,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" exact element={<App />} />
           <Route path="/posts/:id" exact element={<Blog />} />
-          <Route path="/create-blog" exact element={<Createblog />} />
+          <Route path="/create-post" exact element={<Createblog />} />
         </Routes>
         <Footer />
       </BrowserRouter>

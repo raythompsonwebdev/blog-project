@@ -55,7 +55,9 @@
         "no-implied-eval":"error",
         "eqeqeq":"error",
         "no-with":"error",
-        "no-plusplus":"error"
+        "no-plusplus":"error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     },
     "settings": {
         "react": {

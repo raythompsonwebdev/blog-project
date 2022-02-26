@@ -17,7 +17,7 @@ function Blogsnippet(props) {
         <h3>Submitted : {submitted}</h3>
         <p className="card-text">{blogpost}</p>
         <p>Mood: {mood}</p>
-        <Link to={`/posts/${prodId + 1}`}>See Post</Link>
+        <Link to={`/posts/${prodId}`}>See Post</Link>
       </div>
     </div>
   );
@@ -29,7 +29,7 @@ Blogsnippet.defaultProps = {
   blogtitle: "not found",
   blogpost: "not found",
   mood: "not found",
-  prodId: 0,
+  prodId: 1,
   submitted: "not found",
 };
 
