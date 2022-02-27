@@ -1,6 +1,6 @@
-const db = require("../database/connection.js");
+import db  from "../database/connection.js";
 
-function post(request, response) {
+export default function post(request, response) {
   const id = parseInt(request.params.id);
   db.query("DELETE FROM blogpost WHERE id = $1", [id], (err, res) => {
     if (err) {
@@ -9,7 +9,10 @@ function post(request, response) {
     res;
   });
 
-  response.redirect("/posts");
+  response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  response.setHeader("Vary", "Origin");
+
+  response.redirect("http://localhost:3000");
 }
 
-module.exports = { post };
+//module.exports = { post };

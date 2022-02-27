@@ -15,6 +15,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx": "^0.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "flow-bin": "^0.172.0",
     "prettier": "^2.5.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
@@ -29,7 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "flow": "flow"
   },
   "browserslist": {
     "production": [
@@ -48,6 +50,7 @@
     "@babel/preset-env": "^7.16.11",
     "babel-preset-react-app": "^10.0.1",
     "eslint": "^8.9.0",
-    "eslint-config-react-app": "^7.0.0"
+    "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }

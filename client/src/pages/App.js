@@ -5,16 +5,10 @@ import BlogsnippetContainer from "../components/BlogsnippetContainer";
 // eslint-disable-next-line func-style
 function App() {
   const [blogData, setblogData] = useState([]);
-  // const [visibility, setVisibility]  = useState(false);
   const [lastIndex, setLastIndex] = useState(0);
 
-  // const loadData = async () => {
-  //   const fetchProducts = fetch(`/posts`);
-  //   const data = await fetchProducts.json();
-  // }
-  const fetchProducts = fetch(`http://localhost:3333/posts`);
-
   useEffect(() => {
+    const fetchProducts = fetch(`http://localhost:3333/posts`);
     fetchProducts
       .then((response) => {
         if (!response.ok) {
@@ -27,21 +21,23 @@ function App() {
         // console.log(data);
 
         const returnedData = data.map((blog, index) => {
+          // eslint-disable-next-line no-console
+          console.log(blog);
+
+          const { id } = blog;
           // eslint-disable-next-line no-param-reassign
-          blog.prodId = index;
-          setLastIndex(index);
+          blog.prodId = id;
+          setLastIndex(blog.prodId);
           return blog;
         });
 
         setblogData(returnedData);
-
-        // eslint-disable-next-line no-console
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.log(error);
+        console.error(error);
       });
-  });
+  }, []);
 
   // eslint-disable-next-line no-console
   // console.log(blogData);
@@ -66,7 +62,7 @@ function App() {
         </div>
       </div>
       <br />
-      <BlogsnippetContainer blogData={blogData} />
+      <BlogsnippetContainer blogData={blogData} lastIndex={lastIndex} />
     </main>
   );
 }

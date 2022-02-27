@@ -1,6 +1,7 @@
-const db = require("../database/connection.js");
+//const db = require("../database/connection.js");
+import db  from "../database/connection.js";
 
-function post(request, response) {
+export default function post(request, response) {
   const { id, name, blogtitle, blogpost, mood, date } = request.body;
   db.query(
     ` 
@@ -20,4 +21,4 @@ function post(request, response) {
   response.redirect("/posts");
 }
 
-module.exports = { post };
+//module.exports = { post };
