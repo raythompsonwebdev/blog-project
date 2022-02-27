@@ -9,6 +9,8 @@ import MainNav from "./components/MainNav";
 import App from "./pages/App";
 import Blog from "./pages/Blog";
 import Createblog from "./pages/Createblog";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import "./sass/style.scss";
 
 import reportWebVitals from "./reportWebVitals";
@@ -23,6 +25,8 @@ ReactDOM.render(
           <Route path="/" exact element={<App />} />
           <Route path="/posts/:id" exact element={<Blog />} />
           <Route path="/create-post" exact element={<Createblog />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/register" exact element={<Register />} />
         </Routes>
         <Footer />
       </BrowserRouter>

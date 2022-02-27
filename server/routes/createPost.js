@@ -16,7 +16,7 @@ export default function post(request, response) {
   response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   response.setHeader("Vary", "Origin");
 
-  response.redirect("/");
+  response.redirect("http://localhost:3000");
 }
 
 //module.exports = { post };

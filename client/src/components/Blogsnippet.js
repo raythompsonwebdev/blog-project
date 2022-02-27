@@ -18,6 +18,11 @@ function Blogsnippet(props) {
         <p className="card-text">{blogpost}</p>
         <p>Mood: {mood}</p>
         <Link to={`/posts/${prodId}`}>See Post</Link>
+        <form action={`http://localhost:3333/posts/${prodId}`} method="POST">
+          <button type="submit" name="name" value="Push">
+            &times;
+          </button>
+        </form>
       </div>
     </div>
   );

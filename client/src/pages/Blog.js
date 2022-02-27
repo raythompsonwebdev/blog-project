@@ -4,12 +4,8 @@ import { Link, useParams } from "react-router-dom";
 export default function Blog() {
   const { id } = useParams();
 
-  // eslint-disable-next-line no-console
-  // console.log(id);
-
   // const singleBlog = blogData.find((item) => item.name === name);
   const [blogInfo, setblogInfo] = useState([]);
-  // const otherBlogs = blogData.filter((item) => item.name !== name);
 
   useEffect(() => {
     // eslint-disable-next-line func-style
@@ -18,8 +14,7 @@ export default function Blog() {
 
       const result = await fetch(`http://localhost:3333/posts/${id}`);
       const body = await result.json();
-      // eslint-disable-next-line no-console
-      // console.log(body);
+
       setblogInfo(body);
     };
 

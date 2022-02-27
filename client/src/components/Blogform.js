@@ -78,7 +78,7 @@ export default function Blogform() {
           Post Title:&#32;
           <input
             className="form-control"
-            type="blogtitle"
+            type="text"
             name="blogtitle"
             id="blogtitle"
             value={blogtitle}
@@ -106,7 +106,7 @@ export default function Blogform() {
           Mood:&#32;
           <input
             className="form-control"
-            type="mood"
+            type="text"
             name="mood"
             id="mood"
             value={mood}

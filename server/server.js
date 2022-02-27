@@ -4,9 +4,11 @@ import createPost from "./routes/createPost.js";
 import deletePost from "./routes/deletePost.js";
 import updatePost from "./routes/updatePost.js";
 import post from "./routes/post.js";
+import login from "./routes/login.js";
+import register from "./routes/register.js";
 import path from "path";
+//import bodyParser from "body-parser";
 import {fileURLToPath} from 'url';
-
 
 
 //set up file paths
@@ -14,7 +16,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const server = express();
-
 
 //Middleware
 server.use(express.json());
@@ -46,6 +47,10 @@ server.post("/create-post", createPost);
 
 // update single blog post
 server.put("/posts-update", updatePost);
+
+server.get("/login", login);
+
+server.get("/register", register);
 
 //error handling
 server.use((request, response) => {
