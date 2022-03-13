@@ -10,20 +10,22 @@ import path from "path";
 //import bodyParser from "body-parser";
 import {fileURLToPath} from 'url';
 
-
 //set up file paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const PORT = process.env.PORT || 3333;
+
 const server = express();
 
-//Middleware
-server.use(express.json());
+// bodyparser setup
+//server.use(bodyParser.urlencoded({ extended: true }));
+//server.use(bodyParser.json());
 
+//Middleware - bodyparser setup updated
 const bodyParser = express.urlencoded({ extended: false });
 server.use(bodyParser);
-
-const PORT = process.env.PORT || 3333;
+server.use(express.json());
 
 // serve static files
 const staticHandler = express.static(path.join(__dirname, "public"));
@@ -66,7 +68,7 @@ server.use((request, response) => {
       <nav>
         <ul>
         <li>
-            <a href="/posts">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <a href="/posts-add">add post</a>
