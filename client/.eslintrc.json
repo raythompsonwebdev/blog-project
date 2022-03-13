@@ -18,17 +18,25 @@
         "plugin:import/recommended",
         "plugin:prettier/recommended"
     ],
-    "parser": "@babel/eslint-parser", // Uses babel-eslint transforms.
     "parserOptions": {
         "requireConfigFile": false,
         "ecmaFeatures": {
-            "jsx": true
+          "globalReturn": false,
+          "jsx": true
+        },
+        "babelOptions": {
+          "configFile": "./babel.config.json"
         },
         "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
         "sourceType": "module" // Allows for the use of imports
     },
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
     "plugins": ["prettier" , "import", "jsx-a11y"],
     "root": true, // For configuration cascading.
+    "parser": "@babel/eslint-parser", // Uses babel-eslint transforms.
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "strict" : ["error","global"],
