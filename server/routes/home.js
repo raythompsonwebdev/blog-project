@@ -10,8 +10,8 @@ export default function get (request, response) {
       } else {
         const posts = results.rows;
 
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-        response.setHeader("Vary", "Origin");
+        // response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        // response.setHeader("Vary", "Origin");
        
         // set cookie
         // response.cookie("hello", "this is my cookie", {

@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import home from "./routes/home.js";
 import createPost from "./routes/createPost.js";
 import deletePost from "./routes/deletePost.js";
@@ -7,25 +9,33 @@ import post from "./routes/post.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
 import path from "path";
-//import bodyParser from "body-parser";
 import {fileURLToPath} from 'url';
+//import bodyParser from "body-parser";
 
-//set up file paths
+//set up file paths for static files - updated
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.PORT || 3333;
-
+//express server
 const server = express();
 
-// bodyparser setup
-//server.use(bodyParser.urlencoded({ extended: true }));
-//server.use(bodyParser.json());
+//port
+const PORT = process.env.PORT || 3333;
+
+//cors options
+const corsOptions = {credentials:true, origin:process.env.URL || "*"};
+server.use(cors(corsOptions))
+
+// cookie parser
+server.use(cookieParser());
 
 //Middleware - bodyparser setup updated
 const bodyParser = express.urlencoded({ extended: false });
 server.use(bodyParser);
 server.use(express.json());
+// bodyparser old setup
+//server.use(bodyParser.urlencoded({ extended: true }));
+//server.use(bodyParser.json());
 
 // serve static files
 const staticHandler = express.static(path.join(__dirname, "public"));
@@ -50,8 +60,10 @@ server.post("/create-post", createPost);
 // update single blog post
 server.put("/posts-update", updatePost);
 
+// login page
 server.get("/login", login);
 
+//register page
 server.get("/register", register);
 
 //error handling
