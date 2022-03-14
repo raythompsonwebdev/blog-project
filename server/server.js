@@ -6,8 +6,8 @@ import createPost from "./routes/createPost.js";
 import deletePost from "./routes/deletePost.js";
 import updatePost from "./routes/updatePost.js";
 import post from "./routes/post.js";
-import login from "./routes/login.js";
-import register from "./routes/register.js";
+import loginUser from "./routes/loginUser.js";
+import registerUser from "./routes/registerUser.js";
 import path from "path";
 import {fileURLToPath} from 'url';
 //import bodyParser from "body-parser";
@@ -58,13 +58,16 @@ server.post("/posts/:id", deletePost);
 server.post("/create-post", createPost);
 
 // update single blog post
-server.put("/posts-update", updatePost);
+server.put("/update-post", updatePost);
 
-// login page
-server.get("/login", login);
+// login login route
+server.post("/login", loginUser.post);
 
-//register page
-server.get("/register", register);
+// register user route
+server.post("/register-user", registerUser.post);
+
+// get users route
+server.get("/users", registerUser.get);
 
 //error handling
 server.use((request, response) => {

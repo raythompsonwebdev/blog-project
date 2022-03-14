@@ -24,7 +24,7 @@ export default function get (request, response) {
       }
     });
   } catch (err) {
-    console.log(err);
+    response.status(500).json({error: err.message});
   }
 };
 

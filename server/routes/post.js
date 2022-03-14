@@ -1,4 +1,4 @@
-//const db = require("../database/connection.js");
+
 import db  from "../database/connection.js";
 
 export default function get(request, response) {
@@ -16,7 +16,7 @@ export default function get(request, response) {
       response.send(postItem);
     });
   } catch (err) {
-    console.error(err.message);
+    response.status(500).json({error: err.message});
   }
 }
 
