@@ -10,8 +10,7 @@ async function post(request, response) {
 
   try {
 
-    const { username, email, hashpassword, date_submitted } = request.body;
-  
+    const { username, email, hashpassword, date_submitted } = request.body; 
 
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -21,14 +20,13 @@ async function post(request, response) {
       `INSERT INTO users ( username, email, hashpassword, date_submitted) VALUES ($1, $2, $3, $4)`,
       [username, email, hashedPassword , date_submitted]);
 
-      response.json({users:newUser.rows[0]})
-      
+      response.json({users:newUser.rows[0]});      
    
   } catch (err) {
     response.status(500).json({error: err.message});
   }
 
-  response.redirect("http://localhost:3000");
+  //response.redirect("http://localhost:3000");
 }
 
 //router.get("/users", async (req,res) =>{

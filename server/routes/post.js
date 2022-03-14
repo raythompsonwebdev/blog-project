@@ -10,8 +10,6 @@ export default function get(request, response) {
       
       const postItem = result.rows[0];
 
-      // response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-      // response.setHeader("Vary", "Origin");
      
       response.send(postItem);
     });
@@ -20,4 +18,4 @@ export default function get(request, response) {
   }
 }
 
-//module.exports = { get };
+

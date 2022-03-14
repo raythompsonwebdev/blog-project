@@ -1,8 +1,7 @@
-//const db = require("../database/connection.js");
 import db  from "../database/connection.js";
 
 export default function post(request, response) {
-  const { id, name, blogtitle, blogpost, mood, date } = request.body;
+  const { id, name, blogtitle, blogpost, mood, submitted } = request.body;
   db.query(
     ` 
       UPDATE blogpost 
@@ -13,7 +12,7 @@ export default function post(request, response) {
       SET date = $6
       WHERE id = $1
     `,
-    [id, name, blogtitle, blogpost, mood, date]
+    [name, blogtitle, blogpost, mood, submitted]
   ).then((data) => {
     console.log(data);
   });
@@ -21,4 +20,3 @@ export default function post(request, response) {
   response.redirect("/posts");
 }
 
-//module.exports = { post };

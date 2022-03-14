@@ -1,4 +1,3 @@
-//const db = require("../database/connection.js");
 import db  from "../database/connection.js";
 
 export default function get (request, response) {
@@ -9,17 +8,7 @@ export default function get (request, response) {
         throw error;
       } else {
         const posts = results.rows;
-
-        // response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-        // response.setHeader("Vary", "Origin");
        
-        // set cookie
-        // response.cookie("hello", "this is my cookie", {
-        //   httpOnly: true,
-        //   maxAge: 1000 * 60, // 60,000ms (60s)
-        //   sameSite: "lax",
-        // });
-
         response.send(posts);
       }
     });
@@ -28,4 +17,3 @@ export default function get (request, response) {
   }
 };
 
-// module.exports = { get };
