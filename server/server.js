@@ -6,6 +6,7 @@ import createPost from "./routes/createPost.js";
 import deletePost from "./routes/deletePost.js";
 import updatePost from "./routes/updatePost.js";
 import post from "./routes/post.js";
+import logoutUser from "./routes/logoutUser.js";
 import loginUser from "./routes/loginUser.js";
 import registerUser from "./routes/registerUser.js";
 import path from "path";
@@ -23,11 +24,11 @@ const server = express();
 const PORT = process.env.PORT || 3333;
 
 //cors options
-const corsOptions = {credentials:true, origin:process.env.URL || "*"};
+const corsOptions = {credentials:false, origin:process.env.URL || "*"};
 server.use(cors(corsOptions))
 
 // cookie parser
-server.use(cookieParser());
+server.use(cookieParser("alongrandomstringnobodyelseknows"));
 
 //Middleware - bodyparser setup updated
 const bodyParser = express.urlencoded({ extended: false });
@@ -62,6 +63,9 @@ server.put("/update-post", updatePost);
 
 // login login route
 server.post("/login", loginUser.post);
+
+// login logout route
+server.post("/logout", logoutUser.get);
 
 // register user route
 server.post("/register-user", registerUser.post);

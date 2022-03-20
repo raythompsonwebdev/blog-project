@@ -2,7 +2,9 @@ import db  from "../database/connection.js";
 
 export default function get (request, response) {
   try {
+
     
+        
     db.query("SELECT * FROM blogpost", (error, results) => {
       if (error) {
         throw error;
@@ -12,6 +14,8 @@ export default function get (request, response) {
         response.send(posts);
       }
     });
+
+
   } catch (err) {
     response.status(500).json({error: err.message});
   }
