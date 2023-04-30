@@ -2,31 +2,64 @@ import { React, useState } from "react";
 
 // eslint-disable-next-line func-style
 export default function Loginform() {
-  const [username, setUsername] = useState(" ");
-  const [password, setPassword] = useState(null);
+  const [userEmail, setUserEmail] = useState(" ");
+  const [userPassword, setUserPassword] = useState(" ");
 
-  function handleUsername(e) {
-    setUsername(e.target.value);
+  function handleUserEmail(e) {
+    setUserEmail(e.target.value);
   }
 
-  function handlePassword(e) {
-    setPassword(e.target.value);
+  function handleuserPassword(e) {
+    setUserPassword(e.target.value);
+  }
+
+  function submit() {
+    const myForm = document.getElementById("login");
+
+    const formData = new FormData(myForm);
+    // eslint-disable-next-line no-console
+    console.log(formData);
+
+    fetch("http://localhost:3333/login", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          // error processing
+          throw new Error(`${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error("Fetch Error : ", err.message);
+        // throw new Error(err.message);
+      })
+      .finally((result) => {
+        // eslint-disable-next-line no-console
+        console.log(`finished  -${result}`);
+      });
   }
 
   return (
-    <form id="login" action="http://localhost:3333/login" method="POST">
+    <form id="login" onSubmit={submit}>
       <h1 className="h3 mb-3 fw-normal">Login Here </h1>
 
       <div className="form-group">
         <label htmlFor="username">
-          Username:&#32;
+          Email:&#32;
           <input
             className="form-control"
             type="text"
-            name="username"
-            id="username"
-            value={username}
-            onChange={handleUsername}
+            name="email"
+            id="email"
+            value={userEmail}
+            onChange={handleUserEmail}
             required
           />
         </label>
@@ -40,8 +73,8 @@ export default function Loginform() {
             type="password"
             name="password"
             id="password"
-            value={password}
-            onChange={handlePassword}
+            value={userPassword}
+            onChange={handleuserPassword}
             required
           />
         </label>
