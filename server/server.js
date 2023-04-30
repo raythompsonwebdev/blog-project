@@ -1,22 +1,24 @@
 import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import home from "./routes/home.js";
 import createPost from "./routes/createPost.js";
 import deletePost from "./routes/deletePost.js";
 import updatePost from "./routes/updatePost.js";
 import post from "./routes/post.js";
-import login from "./routes/login.js";
-import register from "./routes/register.js";
+import logoutUser from "./routes/logoutUser.js";
+import loginUser from "./routes/loginUser.js";
+import registerUser from "./routes/registerUser.js";
 import path from "path";
-//import bodyParser from "body-parser";
 import {fileURLToPath} from 'url';
 import rateLimit from 'express-rate-limit'
 
 
-
-//set up file paths
+//set up file paths for static files - updated
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+//express server
 const server = express();
 
 const limiter = rateLimit({
@@ -32,10 +34,20 @@ server.use(limiter)
 //Middleware
 server.use(express.json());
 
+//cors options
+const corsOptions = {credentials:false, origin:process.env.URL || "*"};
+server.use(cors(corsOptions))
+
+// cookie parser
+server.use(cookieParser("alongrandomstringnobodyelseknows"));
+
+//Middleware - bodyparser setup updated
 const bodyParser = express.urlencoded({ extended: false });
 server.use(bodyParser);
-
-const PORT = process.env.PORT || 3333;
+server.use(express.json());
+// bodyparser old setup
+//server.use(bodyParser.urlencoded({ extended: true }));
+//server.use(bodyParser.json());
 
 // serve static files
 const staticHandler = express.static(path.join(__dirname, "public"));
@@ -58,11 +70,19 @@ server.post("/posts/:id", deletePost);
 server.post("/create-post", createPost);
 
 // update single blog post
-server.put("/posts-update", updatePost);
+server.put("/update-post", updatePost);
 
-server.get("/login", login);
+// login login route
+server.post("/login", loginUser.post);
 
-server.get("/register", register);
+// login logout route
+server.post("/logout", logoutUser.get);
+
+// register user route
+server.post("/register-user", registerUser.post);
+
+// get users route
+server.get("/users", registerUser.get);
 
 //error handling
 server.use((request, response) => {
