@@ -10,6 +10,9 @@ export default function post(request, response) {
     [author, username, blogtitle, blogpost, mood, submitted]
   ).then((data) => {
     console.log(data);
+  }).catch((error) => {
+    console.error(error);
+    // do stuff with the error here
   });
 
 
