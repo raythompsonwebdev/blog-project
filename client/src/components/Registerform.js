@@ -3,8 +3,9 @@ import { React, useState } from "react";
 // eslint-disable-next-line func-style
 export default function Registerform() {
   const [username, setUsername] = useState(" ");
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState(" ");
+  // set todays date
   const currDate = new Date().toISOString().slice(0, 10);
   const [submitted, setDate] = useState(currDate);
 
@@ -45,7 +46,7 @@ export default function Registerform() {
 
       <div className="form-group">
         <label htmlFor="email">
-          Post Title:&#32;
+          Email:&#32;
           <input
             className="form-control"
             type="email"
@@ -75,7 +76,6 @@ export default function Registerform() {
 
       <div className="form-group">
         <label htmlFor="submitted">
-          Date :
           <input
             className="form-control"
             type="hidden"

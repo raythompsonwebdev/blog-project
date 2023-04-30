@@ -21,9 +21,6 @@ function App() {
         // console.log(data);
 
         const returnedData = data.map((blog, index) => {
-          // eslint-disable-next-line no-console
-          console.log(blog);
-
           const { id } = blog;
           // eslint-disable-next-line no-param-reassign
           blog.prodId = id;
