@@ -13,7 +13,6 @@ import path from "path";
 import {fileURLToPath} from 'url';
 import rateLimit from 'express-rate-limit'
 
-
 //set up file paths for static files - updated
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,6 +44,7 @@ server.use(cookieParser(""));
 const bodyParser = express.urlencoded({ extended: false });
 server.use(bodyParser);
 server.use(express.json());
+
 // bodyparser old setup
 //server.use(bodyParser.urlencoded({ extended: true }));
 //server.use(bodyParser.json());

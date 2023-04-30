@@ -6,12 +6,8 @@ export default function post(request, response) {
 
   const password = "hunter2";
 
-  // const hashedPassword = crypto
-  //   .createHash("sha256")
-  //   .update(password)
-  //   .digest("hex");
+    console.log(password, request);
 
-    console.log(password)
   try {
     // convert string to number
     
