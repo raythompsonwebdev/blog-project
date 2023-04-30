@@ -39,7 +39,7 @@ const corsOptions = {credentials:false, origin:process.env.URL || "*"};
 server.use(cors(corsOptions))
 
 // cookie parser
-server.use(cookieParser("alongrandomstringnobodyelseknows"));
+server.use(cookieParser(""));
 
 //Middleware - bodyparser setup updated
 const bodyParser = express.urlencoded({ extended: false });

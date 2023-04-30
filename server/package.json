@@ -21,11 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
-<<<<<<< HEAD
     "express-rate-limit": "^6.7.0",
-=======
-    "jsonwebtoken": "^8.5.1",
->>>>>>> c739980eb276379efc528f2d55831e78a6eb6a64
     "pg": "^8.7.1"
   },
   "devDependencies": {
