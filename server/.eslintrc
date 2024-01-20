@@ -32,7 +32,7 @@
   },
   "plugins": ["prettier" , "import", "jsx-a11y"],
   "root": true, // For configuration cascading.
-  "parser": "@babel/eslint-parser", // Uses babel-eslint transforms.
+  "parser": "@typescript-eslint/parser", // Uses babel-eslint transforms.
   "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "strict" : ["error","global"],
