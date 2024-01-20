@@ -10,32 +10,34 @@ import logoutUser from "./routes/logoutUser.js";
 import loginUser from "./routes/loginUser.js";
 import registerUser from "./routes/registerUser.js";
 import path from "path";
-import {fileURLToPath} from 'url';
-import rateLimit from 'express-rate-limit'
+import { fileURLToPath } from "url";
+import rateLimit from "express-rate-limit";
 
 //set up file paths for static files - updated
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const PORT = process.env.URL || 8000;
+
 //express server
 const server = express();
 
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
 // Apply the rate limiting middleware to all requests
-server.use(limiter)
+server.use(limiter);
 
 //Middleware
 server.use(express.json());
 
 //cors options
-const corsOptions = {credentials:false, origin:process.env.URL || "*"};
-server.use(cors(corsOptions))
+const corsOptions = { credentials: false, origin: PORT || "*" };
+server.use(cors(corsOptions));
 
 // cookie parser
 server.use(cookieParser(""));
@@ -116,4 +118,6 @@ server.use((request, response) => {
   response.status(404).send(html);
 });
 
-server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+server.listen(PORT || 8000, () =>
+  console.log(`Listening on http://localhost:${PORT || 8000}`)
+);
