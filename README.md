@@ -59,7 +59,7 @@ This is an example of how to list things you need to use the software and how to
 Clone the repo
 
 ```sh
-git clone git@github.com:raythompsonwebdev/shoestore.git
+git clone git@github.com:raythompsonwebdev/blog-project.git
 ```
 
 ## Usage - Client
