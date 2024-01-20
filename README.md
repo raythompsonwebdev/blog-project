@@ -19,12 +19,12 @@ Client and Server Web Application that allows users to create, read, update and 
 - [React](https://react.dev/)
 - [Bootstrap](https://getbootstrap.com/)
 - [Sass](https://sass-lang.com/)
-- [Node](https://nodejs.org/en)
 - [Prettier](https://prettier.io/)
 - [Eslint](https://eslint.org/)
 - [Postcss](https://postcss.org/)
 - [Stylelint](https://stylelint.io/)
 - [Flow-Bin](https://www.npmjs.com/package/flow-bin/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ### Server
 
@@ -33,6 +33,16 @@ Client and Server Web Application that allows users to create, read, update and 
 - [JWT Tokens](https://jwt.io/)
 - [Cypress](https://www.cypress.io/)
 - [PG](https://www.npmjs.com/package/pg/)
+- [CORS](https://www.npmjs.com/package/cors/)
+- [BodyParser](https://www.npmjs.com/package/body-parser)
+- [CookieParser](https://www.npmjs.com/package/cookie-parser)
+- [Babel](https://babeljs.io/)
+- [Express-Rate-Limiter](https://www.npmjs.com/package/express-rate-limit)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [DotEnv](https://www.npmjs.com/package/dotenv)
+
+### Database
+
 - [PostgreSQL](https://www.postgresql.org/)
 
 ## Usage - Client
