@@ -45,23 +45,48 @@ Client and Server Web Application that allows users to create, read, update and 
 
 - [PostgreSQL](https://www.postgresql.org/)
 
+## Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+Clone the repo
+
+```sh
+git clone git@github.com:raythompsonwebdev/shoestore.git
+```
+
 ## Usage - Client
 
-Install packages :
+Install NPM packages :
 
-`npm install`
-
-### or
-
-`yarn install`
+```sh
+npm install
+```
 
 ### or
 
-`pnpm install`
+```sh
+yarn install
+```
+
+### or
+
+```sh
+pnpm install
+```
 
 Once packages have been down loaded , To view website:
 
-`npm run start`
+```sh
+npm run start
+```
 
 Runs start to start website in development mode.
 
@@ -71,11 +96,15 @@ The page will reload when you make changes. You may also see any lint errors in 
 
 Runs build to build the application for production usage
 
-`npm run build`
+```sh
+npm run build
+```
 
 Runs lint to lint styles and scripts files.
 
-`npm run lint`
+```sh
+npm run lint
+```
 
 ## Usage - Server
 
@@ -83,21 +112,29 @@ Set up a PostgreSQL Database to enable you to Create Read Update and Delete blog
 
 Set up Cypress : [Installing Cypress and writing your first test](https://learn.cypress.io/testing-your-first-application/installing-cypress-and-writing-your-first-test)
 
-Install packages :
+Install NPM packages :
 
-`npm install`
-
-### or
-
-`yarn install`
+```sh
+npm install
+```
 
 ### or
 
-`pnpm install`
+```sh
+yarn install
+```
+
+### or
+
+```sh
+pnpm install
+```
 
 Once packages have been downloaded , to start client got to client folder :
 
-`npm run start`
+```sh
+npm run start
+```
 
 Runs start to start website in development mode.
 
@@ -107,18 +144,26 @@ The page will reload when you make changes. You may also see any lint errors in 
 
 Runs lint to lint client application styles and scripts files , cd into client folder.
 
-`npm run lint`
+```sh
+npm run lint
+```
 
 Run build to build the client application for production usage , cd into client folder
 
-`npm run build`
+```sh
+npm run build
+```
 
 To start development server, cd into server folder :
 
-`npm run dev`
+```sh
+npm run dev
+```
 
 To start staging server , cd into server folder :
 
-`npm run start`
+```sh
+npm run start
+```
 
 To test if API calls from server are retrieving data from from the database,[Postman](https://www.postman.com/) is a great tool to use to test API calls.
