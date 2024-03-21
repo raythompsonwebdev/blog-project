@@ -5,14 +5,17 @@ export default function Loginform() {
     const [userEmail, setUserEmail] = useState(' ')
     const [userPassword, setUserPassword] = useState(' ')
 
+    // eslint-disable-next-line func-style
     function handleUserEmail(e) {
         setUserEmail(e.target.value)
     }
 
+    // eslint-disable-next-line func-style
     function handleuserPassword(e) {
         setUserPassword(e.target.value)
     }
 
+    // eslint-disable-next-line func-style
     function submit() {
         const myForm = document.getElementById('login')
 

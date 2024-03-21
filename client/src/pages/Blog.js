@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import convertDate from '../helpers/helper'
 
 export default function Blog() {
     const { id } = useParams()
@@ -8,21 +9,16 @@ export default function Blog() {
     const [blogInfo, setblogInfo] = useState([])
 
     useEffect(() => {
-        // eslint-disable-next-line func-style
-        const fetchData = async () => {
-            // add "proxy":"http://localhost:8000/" property to package.json to avoid cors issue
-
-            const result = await fetch(`http://localhost:3333/posts/${id}`)
+        async function fetchData() {
+            const result = await fetch(`http://localhost:8000/posts/${id}`)
             const body = await result.json()
-
             setblogInfo(body)
         }
 
         fetchData()
     }, [id])
 
-    // eslint-disable-next-line no-console
-    console.log(blogInfo.id)
+    const { author, blogtitle, blogpost, mood, date } = blogInfo
 
     return (
         <main role="main">
@@ -33,25 +29,26 @@ export default function Blog() {
                     </h3>
 
                     <div className="blog-post">
-                        <h2 className="blog-post-title">
-                            {blogInfo.blogtitle}
-                        </h2>
+                        <h2 className="blog-post-title">{blogtitle}</h2>
                         <p className="blog-post-meta">
-                            Submitted: {blogInfo.submitted} by{' '}
-                            <Link to="/"> {blogInfo.author}</Link>
+                            Submitted: {convertDate(date)}
+                        </p>
+                        <p>
+                            by : <Link to="/"> {author}</Link>
                         </p>
 
-                        <p>{blogInfo.blogpost}</p>
+                        <hr />
+                        <p>{blogpost}</p>
                         <hr />
 
                         <blockquote>
                             <p>
-                                My mood is <strong>{blogInfo.mood}</strong>
+                                My mood is <strong>{mood}</strong>
                             </p>
                         </blockquote>
                     </div>
 
-                    <nav className="blog-pagination">
+                    {/* <nav className="blog-pagination">
                         <Link className="btn btn-outline-primary" to="/">
                             Older
                         </Link>
@@ -63,7 +60,7 @@ export default function Blog() {
                         >
                             Newer
                         </Link>
-                    </nav>
+                    </nav> */}
                 </div>
 
                 <aside className="col-md-4 blog-sidebar">

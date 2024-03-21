@@ -41,7 +41,7 @@
         "new-cap": "error",
         "no-invalid-this": "error",
         "prefer-const":"error",
-        "func-style":["error", "declaration"],
+        //"func-style":["error", "expression"],
         "no-new-func":"error",
         "prettier/prettier": "error",
         "no-unused-vars": "warn",

@@ -1,9 +1,19 @@
 import React from 'react'
 // import PropTypes from "prop-types";
 import { Link } from 'react-router-dom'
+import convertDate from '../helpers/helper'
 
-function Blogsnippet(props) {
-    const { author, username, blogtitle, blogpost, mood, prodId, submitted } = {
+export default function Blogsnippet(props) {
+    const {
+        key,
+        author,
+        blogpost,
+        blogtitle,
+        submitted,
+        mood,
+        username,
+        prodId,
+    } = {
         ...props,
     }
 
@@ -14,7 +24,8 @@ function Blogsnippet(props) {
                 <h1>{blogtitle}</h1>
                 <h2>Author : {author} </h2>
                 <h2>User : {username} </h2>
-                <h3>Submitted : {submitted}</h3>
+                <h3>Submitted : {convertDate(submitted)}</h3>
+                <h3>Key : {key}</h3>
                 <p className="card-text">{blogpost}</p>
                 <p>Mood: {mood}</p>
                 <Link to={`/posts/${prodId}`}>See Post</Link>
@@ -40,5 +51,3 @@ Blogsnippet.defaultProps = {
     prodId: 1,
     submitted: 'not found',
 }
-
-export default Blogsnippet

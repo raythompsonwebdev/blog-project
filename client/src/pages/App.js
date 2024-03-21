@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import BlogsnippetContainer from '../components/BlogsnippetContainer'
 
 // eslint-disable-next-line func-style
-function App() {
+export default function App() {
     const [blogData, setblogData] = useState([])
-    const [lastIndex, setLastIndex] = useState(0)
+    // const [lastIndex, setLastIndex] = useState(0)
 
     useEffect(() => {
-        const fetchProducts = fetch(`http://localhost:3333/posts`)
+        const fetchProducts = fetch(`http://localhost:8000/posts`)
         fetchProducts
             .then((response) => {
                 if (!response.ok) {
@@ -17,27 +17,13 @@ function App() {
                 return response.json()
             })
             .then((data) => {
-                // eslint-disable-next-line no-console
-                // console.log(data);
-
-                const returnedData = data.map((blog, index) => {
-                    const { id } = blog
-                    // eslint-disable-next-line no-param-reassign
-                    blog.prodId = id
-                    setLastIndex(blog.prodId)
-                    return blog
-                })
-
-                setblogData(returnedData)
+                setblogData(data)
             })
             .catch((error) => {
                 // eslint-disable-next-line no-console
                 console.error(error)
             })
     }, [])
-
-    // eslint-disable-next-line no-console
-    // console.log(blogData);
 
     return (
         <main role="main">
@@ -59,9 +45,7 @@ function App() {
                 </div>
             </div>
             <br />
-            <BlogsnippetContainer blogData={blogData} lastIndex={lastIndex} />
+            <BlogsnippetContainer blogData={blogData} />
         </main>
     )
 }
-
-export default App

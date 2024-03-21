@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line func-style
-function MainNav() {
+export default function MainNav() {
     return (
         <nav
             className="navbar navbar-expand-md navbar-light bg-light"
@@ -39,5 +39,3 @@ function MainNav() {
         </nav>
     )
 }
-
-export default MainNav

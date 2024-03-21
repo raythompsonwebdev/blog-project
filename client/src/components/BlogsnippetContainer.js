@@ -2,19 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Blogsnippet from './Blogsnippet'
 
-function BlogsnippetContainer(props) {
+export default function BlogsnippetContainer(props) {
     const { blogData } = props
     // eslint-disable-next-line no-console
     const Blog = blogData.map((item) => (
         <Blogsnippet
             key={item.id}
             author={item.author}
-            username={item.username}
+            username={item.name}
             blogtitle={item.blogtitle}
             blogpost={item.blogpost}
             mood={item.mood}
             prodId={item.prodId}
-            submitted={item.submitted}
+            submitted={item.date}
         />
     ))
 
@@ -38,5 +38,3 @@ BlogsnippetContainer.propTypes = {
         })
     ),
 }
-
-export default BlogsnippetContainer
