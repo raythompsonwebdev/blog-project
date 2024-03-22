@@ -1,23 +1,26 @@
 // index.js
-import 'dotenv/config';
+import "dotenv/config";
 import pg from "pg";
-
 const { Pool } = pg;
 
 let localPoolConfig = {
   user: process.env.PGUSER,
   host: process.env.PGHOST,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
   port: 5432,
-
-}
+};
 
 // local or remote database
-const poolConfig = process.env.DATABASE_URL ? {
-  connectionString:process.env.DATABASE_URL,
-  ssl: {rejectUnauthorized: false}
-} : localPoolConfig;
+const poolConfig = process.env.DATABASE_URL
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    }
+  : localPoolConfig;
 
 // Connect to the database
 const db = new Pool(poolConfig);

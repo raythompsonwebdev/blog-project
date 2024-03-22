@@ -1,17 +1,12 @@
 import db from "../database/connection.js";
 
-export default function get(request, response) {
-  try {
-    db.query("SELECT * FROM blogpost", (error, results) => {
-      if (error) {
-        throw error;
-      } else {
-        const posts = results.rows;
-
-        response.send(posts);
-      }
-    });
-  } catch (err) {
-    response.status(500).json({ error: err.message });
-  }
+export default async function home(request, response) {
+  db.query("SELECT * FROM blogpost", (error, results) => {
+    if (error) {
+      response.status(500).json({ error: error.message });
+    } else {
+      const posts = results.rows;
+      response.send(posts);
+    }
+  });
 }

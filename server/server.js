@@ -69,22 +69,22 @@ server.get("/posts/:id", post);
 server.post("/posts/:id", deletePost);
 
 // create blog post
-server.post("/create-post", createPost);
+server.post("/create_post", createPost);
 
 // update single blog post
-server.put("/update-post", updatePost);
+server.put("/update_post", updatePost);
 
 // login login route
-server.post("/login", loginUser.post);
+server.post("/login", loginUser);
 
 // login logout route
-server.post("/logout", logoutUser.get);
+server.post("/logout", logoutUser);
 
 // register user route
-server.post("/register-user", registerUser.post);
+server.post("/register-user", registerUser);
 
-// get users route
-server.get("/users", registerUser.get);
+// // get users route
+// server.get("/users", registerUser.get);
 
 //error handling
 server.use((request, response) => {
