@@ -1,6 +1,5 @@
 import { React, useState } from 'react'
 
-// eslint-disable-next-line func-style
 export default function Blogform() {
     const [author, setAuthor] = useState(' ')
     const [username, setUsername] = useState(' ')
@@ -37,51 +36,44 @@ export default function Blogform() {
 
     // eslint-disable-next-line func-style
     function submit() {
-        // eslint-disable-next-line no-console
-        console.log(author, username, blogtitle, blogpost, mood, submitted)
-
-        fetch('http://localhost:8000/create-post', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                author,
-                username,
-                blogtitle,
-                blogpost,
-                mood,
-                submitted,
-            }),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    // error processing
-                    throw new Error(
-                        `Database Error : ${response.status}: ${response.statusText}`
-                    )
-                }
-                return response.json()
+        try {
+            fetch('http://localhost:8000/create_post', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    author,
+                    username,
+                    blogtitle,
+                    blogpost,
+                    mood,
+                    submitted,
+                }),
             })
-            .then((response) => {
-                // eslint-disable-next-line no-console
-                console.log(response)
-            })
-            .catch((err) => {
-                // eslint-disable-next-line no-console
-                console.error('Fetch Error : ', err.message)
-                // throw new Error(err.message);
-            })
+                .then((response) => {
+                    if (!response.ok) {
+                        // error processing
+                        throw new Error(
+                            `Database Error : ${response.status}: ${response.statusText}`
+                        )
+                    }
+                    return response.json()
+                })
+                .then((response) => {
+                    // eslint-disable-next-line no-console
+                    console.log(response)
+                })
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error('Fetch Error : ', err.message)
+            // throw new Error(err.message);
+        }
     }
 
     return (
-        <form
-            id="create-post"
-            // action="http://localhost:8000/create-post"
-            // method="POST"
-            onSubmit={submit}
-        >
+        <form id="create-post" onSubmit={submit}>
             <h1 className="h3 mb-3 fw-normal">Create a Blog</h1>
             <hr />
             <div className="form-group">
