@@ -1,11 +1,11 @@
 import { React, useState } from 'react'
 
 export default function Blogform() {
-    const [author, setAuthor] = useState(' ')
-    const [username, setUsername] = useState(' ')
-    const [blogtitle, setPosttitle] = useState(' ')
-    const [blogpost, setPost] = useState(' ')
-    const [mood, setMood] = useState(' ')
+    const [author, setAuthor] = useState('')
+    const [username, setUsername] = useState('')
+    const [blogtitle, setPosttitle] = useState('')
+    const [blogpost, setPost] = useState('')
+    const [mood, setMood] = useState('')
 
     const currDate = new Date().toISOString().slice(0, 10)
     const [submitted, setDate] = useState(currDate)
@@ -35,9 +35,9 @@ export default function Blogform() {
     }
 
     // eslint-disable-next-line func-style
-    function submit() {
+    async function submit() {
         try {
-            fetch('http://localhost:8000/create_post', {
+            const response = await fetch('http://localhost:8000/create_post', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -52,23 +52,12 @@ export default function Blogform() {
                     submitted,
                 }),
             })
-                .then((response) => {
-                    if (!response.ok) {
-                        // error processing
-                        throw new Error(
-                            `Database Error : ${response.status}: ${response.statusText}`
-                        )
-                    }
-                    return response.json()
-                })
-                .then((response) => {
-                    // eslint-disable-next-line no-console
-                    console.log(response)
-                })
+            const result = await response.json()
+            // eslint-disable-next-line no-console
+            console.log('Success:', result)
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error('Fetch Error : ', err.message)
-            // throw new Error(err.message);
         }
     }
 
@@ -155,7 +144,7 @@ export default function Blogform() {
                     <input
                         className="form-control"
                         type="date"
-                        id="submittedr"
+                        id="submitted"
                         name="submitted"
                         onChange={handleDate}
                         value={submitted}

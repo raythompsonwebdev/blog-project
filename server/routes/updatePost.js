@@ -1,7 +1,8 @@
-import db  from "../database/connection.js";
+import db from "../database/connection.js";
 
-export default function post(request, response) {
-  const { id, name, blogtitle, blogpost, mood, submitted } = request.body;
+async function updatePost(request, response) {
+  const id = parseInt(request.params.id);
+  const { name, blogtitle, blogpost, mood, submitted } = request.body;
   db.query(
     ` 
       UPDATE blogpost 
@@ -12,11 +13,16 @@ export default function post(request, response) {
       SET date = $6
       WHERE id = $1
     `,
-    [name, blogtitle, blogpost, mood, submitted]
-  ).then((data) => {
-    console.log(data);
-  });
+    [id, name, blogtitle, blogpost, mood, submitted],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Blog updated ID: ${id}`);
+    }
+  );
 
   response.redirect("/posts");
 }
 
+export default updatePost;

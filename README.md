@@ -24,7 +24,6 @@ Client and Server Web Application that allows users to create, read, update and 
 - [Postcss](https://postcss.org/)
 - [Stylelint](https://stylelint.io/)
 - [Flow-Bin](https://www.npmjs.com/package/flow-bin/)
-- [Typescript](https://www.typescriptlang.org/)
 
 ### Server
 

@@ -1,48 +1,37 @@
 import db from "../database/connection.js";
-import bcrypt from "bcrypt";
-//import crypto from "crypto";
+import { generateToken } from "../utils/jwt-helpers.js";
+import { comparePassword } from "../utils/EncryptPassword.js";
 
-async function loginUser(req, res) {
-  //
-  //const sid = crypto.randomBytes(18).toString("base64");
-
+async function loginUser(request, response) {
   try {
-    const { email, hashpassword } = req.body;
-    const users = await db.query("SELECT * FROM users WHERE email = $1", [
+    const { email, password } = request.body;
+
+    const results = await db.query("SELECT * FROM users WHERE email = $1", [
       email,
     ]);
 
-    if (users.rows.length === 0)
-      return res.status(401).json({ error: "Email is incorrect" });
-    //PASSWORD CHECK
-    const validPassword = bcrypt.compareSync(
-      hashpassword,
-      users.rows[0].hashpassword
-    );
+    if (results.rows.length === 0) {
+      return response.status(400).json({ error: "Email does not exist" });
+    }
 
-    if (!validPassword)
-      return res.status(401).json({ error: "Incorrect password" });
+    const validPassword = comparePassword(password, results.rows[0].password);
+
+    if (!validPassword) {
+      return response.status(400).json({ error: "Incorrect password" });
+    }
 
     const userInfo = {
-      email: "email",
-      password: "passowrd",
+      email: results.rows[0].email,
+      password: results.rows[0].password,
     };
 
-    //cookie test
-    res.cookie("sid", userInfo, {
-      httpOnly: true,
-      maxAge: 1000 * 60, // 60,000ms (60s)
-      sameSite: "lax",
-      signed: true,
-    });
+    generateToken(response, userInfo); //generate token and signed cookie
 
-    //console.log(req.cookies);
-    console.log(req.signedCookies);
-  } catch (error) {
-    res.status(401).json({ error: error.message });
+    response.status(200).json({ message: "User found" });
+  } catch (err) {
+    console.error("Login Error:", err);
+    response.status(500).json({ error: "Internal Server Error" });
   }
-
-  res.redirect("/posts");
 }
 
 export default loginUser;

@@ -3,12 +3,12 @@ import { React, useState } from 'react'
 
 // eslint-disable-next-line func-style
 export default function Registerform() {
-    const [username, setUsername] = useState(' ')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [email, setEmail] = useState(' ')
+    const [email, setEmail] = useState('')
     // set todays date
     const currDate = new Date().toISOString().slice(0, 10)
-    const [submitted, setDate] = useState(currDate)
+    const [dateSubmitted, setDate] = useState(currDate)
 
     function handleUsername(e) {
         setUsername(e.target.value)
@@ -26,8 +26,38 @@ export default function Registerform() {
         setDate(e.target.value)
     }
 
+    // eslint-disable-next-line func-style
+    async function submit() {
+        try {
+            const response = await fetch(
+                'http://localhost:8000/register_user',
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        dateSubmitted,
+                    }),
+                }
+            )
+
+            const result = await response.json()
+            // eslint-disable-next-line no-console
+            console.log('Success:', result)
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error('Fetch Error : ', err.message)
+            // throw new Error(err.message);
+        }
+    }
+
     return (
-        <form id="login" action="http://localhost:3333/register" method="POST">
+        <form id="login" onSubmit={submit}>
             <h1 className="h3 mb-3 fw-normal">Register Here</h1>
 
             <div className="form-group">
@@ -83,7 +113,7 @@ export default function Registerform() {
                         id="submitted"
                         name="submitted"
                         onChange={handleDate}
-                        value={submitted}
+                        value={dateSubmitted}
                     />
                 </label>
             </div>

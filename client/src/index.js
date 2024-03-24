@@ -3,7 +3,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import './sass/style.scss'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MainNav from './components/MainNav'
@@ -12,7 +12,7 @@ import Blog from './pages/Blog'
 import Createblog from './pages/Createblog'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import './sass/style.scss'
+import Profile from './pages/Profile'
 
 // import reportWebVitals from './reportWebVitals'
 
@@ -30,6 +30,7 @@ root.render(
                     <Route path="/create-post" exact element={<Createblog />} />
                     <Route path="/login" exact element={<Login />} />
                     <Route path="/register" exact element={<Register />} />
+                    <Route path="/profile" exact element={<Profile />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>

@@ -5,38 +5,41 @@ import convertDate from '../helpers/helper'
 
 export default function Blogsnippet(props) {
     const {
-        key,
-        author,
+        // key,
+        // author,
         blogpost,
         blogtitle,
         submitted,
-        mood,
-        username,
+        // mood,
+        // username,
         prodId,
     } = {
         ...props,
     }
 
     return (
-        <div className="card">
-            {/* <img src="..." className="card-img-top" alt="..." /> */}
-            <div className="card-body">
-                <h1>{blogtitle}</h1>
-                <h2>Author : {author} </h2>
-                <h2>User : {username} </h2>
-                <h3>Submitted : {convertDate(submitted)}</h3>
-                <h3>Key : {key}</h3>
-                <p className="card-text">{blogpost}</p>
-                <p>Mood: {mood}</p>
-                <Link to={`/posts/${prodId}`}>See Post</Link>
-                <form
-                    action={`http://localhost:3333/posts/${prodId}`}
-                    method="POST"
-                >
-                    <button type="submit" name="name" value="Push">
-                        &times;
-                    </button>
-                </form>
+        <div className="card flex-md-row mb-4 box-shadow h-md-250">
+            <img
+                className="card-img-right flex-auto d-none d-md-block"
+                data-src="holder.js/200x250?theme=thumb"
+                alt="Thumbnail [200x250]"
+                src=""
+                data-holder-rendered="true"
+            />
+            <div className="card-body d-flex flex-column align-items-start">
+                <strong className="d-inline-block mb-2 text-primary">
+                    World
+                </strong>
+                <h3 className="mb-0">
+                    <Link className="text-dark" to={`/posts/${prodId}`}>
+                        {blogtitle}
+                    </Link>
+                </h3>
+                <br />
+                <div className="mb-1 text-muted">{convertDate(submitted)}</div>
+                <p className="card-text mb-auto">{blogpost}</p>
+                <br />
+                <Link to={`/posts/${prodId}`}>Continue reading</Link>
             </div>
         </div>
     )

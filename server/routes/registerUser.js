@@ -1,39 +1,24 @@
 import db from "../database/connection.js";
-import { hashPassword, comparePassword } from "../utils/EncryptPassword.js";
-import { generateToken, verifyJwt } from "../utils/jwt-helpers.js";
-//let refreshTokens = [];
+import { hashPassword } from "../utils/EncryptPassword.js";
 
 async function registerUser(request, response) {
-  try {
-    const { username, email, hashpassword, date_submitted } = request.body;
+  const { username, email, password, dateSubmitted } = request.body;
 
-    const hashedPassword = await hashPassword(hashpassword);
+  const hashpassword = await hashPassword(password);
 
-    const newUser = await db.query(
-      `INSERT INTO users ( username, email, hashpassword, date_submitted) VALUES ($1, $2, $3, $4)`,
-      [username, email, hashedPassword, date_submitted]
-    );
+  db.query(
+    `INSERT INTO users ( username, email, password, date) VALUES ($1, $2, $3, $4)`,
+    [username, email, hashpassword, dateSubmitted],
+    (error, results) => {
+      if (error) {
+        response.status(500).json({ error: error.message });
+      }
 
-    response.json({ users: newUser.rows[0] });
-  } catch (err) {
-    response.status(500).json({ error: err.message });
-  }
+      console.log(results);
+    }
+  );
 
-  //response.redirect("http://localhost:3000");
+  // response.redirect("/thankyou");
 }
-
-//router.get("/users", async (req,res) =>{
-// async function get(req, res) {
-
-//   try{
-
-//     const users = await db.query("SELECT * from users");
-//     res.json({users:users.rows});
-
-//   }catch(error){
-//     res.status(500).json({error:error.message})
-//   }
-
-// }
 
 export default registerUser;

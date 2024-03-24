@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -12,12 +13,11 @@ import registerUser from "./routes/registerUser.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import rateLimit from "express-rate-limit";
-
 //set up file paths for static files - updated
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.URL || 8000;
+const PORT = 8000;
 
 //express server
 const server = express();
@@ -32,21 +32,17 @@ const limiter = rateLimit({
 // Apply the rate limiting middleware to all requests
 server.use(limiter);
 
-//Middleware
-server.use(express.json());
-
 //cors options
 const corsOptions = { credentials: false, origin: PORT || "*" };
 server.use(cors(corsOptions));
 
 // cookie parser
-server.use(cookieParser(""));
+server.use(cookieParser(process.env.COOKIE_SECRET));
 
 //Middleware - bodyparser setup updated
 const bodyParser = express.urlencoded({ extended: false });
 server.use(bodyParser);
 server.use(express.json());
-
 // bodyparser old setup
 //server.use(bodyParser.urlencoded({ extended: true }));
 //server.use(bodyParser.json());
@@ -74,14 +70,14 @@ server.post("/create_post", createPost);
 // update single blog post
 server.put("/update_post", updatePost);
 
+// register user route
+server.post("/register_user", registerUser);
+
 // login login route
 server.post("/login", loginUser);
 
 // login logout route
 server.post("/logout", logoutUser);
-
-// register user route
-server.post("/register-user", registerUser);
 
 // // get users route
 // server.get("/users", registerUser.get);
@@ -118,6 +114,4 @@ server.use((request, response) => {
   response.status(404).send(html);
 });
 
-server.listen(PORT || 8000, () =>
-  console.log(`Listening on http://localhost:${PORT || 8000}`)
-);
+server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

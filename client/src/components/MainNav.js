@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-// eslint-disable-next-line func-style
 export default function MainNav() {
     return (
         <nav

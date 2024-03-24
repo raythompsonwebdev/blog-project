@@ -4,7 +4,7 @@ import Blogsnippet from './Blogsnippet'
 
 export default function BlogsnippetContainer(props) {
     const { blogData } = props
-    // eslint-disable-next-line no-console
+
     const Blog = blogData.map((item) => (
         <Blogsnippet
             key={item.id}

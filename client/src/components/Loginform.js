@@ -1,69 +1,62 @@
 import { React, useState } from 'react'
 
-// eslint-disable-next-line func-style
 export default function Loginform() {
-    const [userEmail, setUserEmail] = useState(' ')
-    const [userPassword, setUserPassword] = useState(' ')
+    const [email, setUserEmail] = useState('')
+    const [password, setUserPassword] = useState('')
+    // const [error, setError] = useState('')
 
-    // eslint-disable-next-line func-style
     function handleUserEmail(e) {
         setUserEmail(e.target.value)
     }
 
-    // eslint-disable-next-line func-style
     function handleuserPassword(e) {
         setUserPassword(e.target.value)
     }
 
-    // eslint-disable-next-line func-style
-    function submit() {
-        const myForm = document.getElementById('login')
+    async function submit() {
+        try {
+            const response = await fetch('http://localhost:8000/login', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ password, email }),
+            })
 
-        const formData = new FormData(myForm)
-        // eslint-disable-next-line no-console
-        console.log(formData)
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            const result = await response.json()
 
-        fetch('http://localhost:3333/login', {
-            method: 'POST',
-            body: formData,
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    // error processing
-                    throw new Error(
-                        `${response.status}: ${response.statusText}`
-                    )
-                }
-                return response.json()
-            })
-            .then((response) => {
-                // eslint-disable-next-line no-console
-                console.log(response)
-            })
-            .catch((err) => {
-                // eslint-disable-next-line no-console
-                console.error('Fetch Error : ', err.message)
-                // throw new Error(err.message);
-            })
-            .finally((result) => {
-                // eslint-disable-next-line no-console
-                console.log(`finished  -${result}`)
-            })
+            // eslint-disable-next-line no-console
+            console.log(result)
+
+            // eslint-disable-next-line no-console
+            // console.log(result.Error)
+
+            // setError(result)
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.log(` Fecth : ${err}`)
+        }
     }
+
+    // eslint-disable-next-line no-console
+    // console.log(error)
 
     return (
         <form id="login" onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Login Here </h1>
-
+            <div id="errorbox">{}</div>
             <div className="form-group">
-                <label htmlFor="username">
+                <label htmlFor="email">
                     Email:&#32;
                     <input
                         className="form-control"
-                        type="text"
+                        type="email"
                         name="email"
                         id="email"
-                        value={userEmail}
+                        value={email}
                         onChange={handleUserEmail}
                         required
                     />
@@ -78,7 +71,7 @@ export default function Loginform() {
                         type="password"
                         name="password"
                         id="password"
-                        value={userPassword}
+                        value={password}
                         onChange={handleuserPassword}
                         required
                     />

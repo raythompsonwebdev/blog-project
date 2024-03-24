@@ -45,7 +45,9 @@ export default function App() {
                 </div>
             </div>
             <br />
-            <BlogsnippetContainer blogData={blogData} />
+            <div className="row">
+                <BlogsnippetContainer blogData={blogData} />
+            </div>
         </main>
     )
 }

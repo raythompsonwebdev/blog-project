@@ -5,7 +5,6 @@ import convertDate from '../helpers/helper'
 export default function Blog() {
     const { id } = useParams()
 
-    // const singleBlog = blogData.find((item) => item.name === name);
     const [blogInfo, setblogInfo] = useState([])
 
     useEffect(() => {
