@@ -3,7 +3,8 @@ import { React, useState } from 'react'
 export default function Loginform() {
     const [email, setUserEmail] = useState('')
     const [password, setUserPassword] = useState('')
-    // const [error, setError] = useState('')
+    const [errorMessage, setError] = useState()
+    const [passError, setPassError] = useState()
 
     function handleUserEmail(e) {
         setUserEmail(e.target.value)
@@ -13,41 +14,39 @@ export default function Loginform() {
         setUserPassword(e.target.value)
     }
 
-    async function submit() {
+    const submit = async (e) => {
+        e.preventDefault()
         try {
             const response = await fetch('http://localhost:8000/login', {
                 method: 'POST',
                 headers: {
-                    Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ password, email }),
             })
-
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`)
+                throw new Error(
+                    `Network response was not ok - ${response.status}`
+                )
             }
-            const result = await response.json()
 
-            // eslint-disable-next-line no-console
-            console.log(result)
-
-            // eslint-disable-next-line no-console
-            // console.log(result.Error)
-
-            // setError(result)
+            // Assuming the server returns some data about the created user
+            const data = await response.json()
+            setPassError(data?.passwordError)
+            setError(data?.error)
         } catch (err) {
             // eslint-disable-next-line no-console
-            console.log(` Fecth : ${err}`)
+            console.log(err)
         }
     }
 
     // eslint-disable-next-line no-console
-    // console.log(error)
+    console.log(errorMessage, passError)
 
     return (
         <form id="login" onSubmit={submit}>
-            <div id="errorbox">{}</div>
+            <div className="error_message">{errorMessage}</div>
+            <div className="error_message">{passError}</div>
             <div className="form-group">
                 <label htmlFor="email">
                     Email:&#32;

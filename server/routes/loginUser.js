@@ -11,13 +11,13 @@ async function loginUser(request, response) {
     ]);
 
     if (results.rows.length === 0) {
-      return response.status(400).json({ error: "Email does not exist" });
+      return response.send({ error: "Email does not exist" });
     }
 
     const validPassword = comparePassword(password, results.rows[0].password);
 
-    if (!validPassword) {
-      return response.status(400).json({ error: "Incorrect password" });
+    if (validPassword == false) {
+      return response.send({ passwordError: "Incorrect password" });
     }
 
     const userInfo = {
@@ -30,7 +30,7 @@ async function loginUser(request, response) {
     response.status(200).json({ message: "User found" });
   } catch (err) {
     console.error("Login Error:", err);
-    response.status(500).json({ error: "Internal Server Error" });
+    response.status(500).json({ error: "User Not found" });
   }
 }
 

@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import home from "./routes/home.js";
 import createPost from "./routes/createPost.js";
@@ -10,6 +11,7 @@ import post from "./routes/post.js";
 import logoutUser from "./routes/logoutUser.js";
 import loginUser from "./routes/loginUser.js";
 import registerUser from "./routes/registerUser.js";
+import { notFound } from "./middleware/errorMiddleware.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import rateLimit from "express-rate-limit";
@@ -22,6 +24,19 @@ const PORT = 8000;
 //express server
 const server = express();
 
+// cookie parser
+server.use(cookieParser(process.env.COOKIE_SECRET));
+
+// Cross Origin Resource Sharing
+const whitelist = [process.env.URL, "http://localhost:3000"];
+//cors options
+const corsOptions = {
+  origin: whitelist,
+  methods: ["GET", "POST"],
+  credentials: true,
+};
+server.use(cors(corsOptions));
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
@@ -32,20 +47,10 @@ const limiter = rateLimit({
 // Apply the rate limiting middleware to all requests
 server.use(limiter);
 
-//cors options
-const corsOptions = { credentials: false, origin: PORT || "*" };
-server.use(cors(corsOptions));
-
-// cookie parser
-server.use(cookieParser(process.env.COOKIE_SECRET));
-
 //Middleware - bodyparser setup updated
-const bodyParser = express.urlencoded({ extended: false });
-server.use(bodyParser);
+// for parsing application/xwww-form-urlencoded
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
-// bodyparser old setup
-//server.use(bodyParser.urlencoded({ extended: true }));
-//server.use(bodyParser.json());
 
 // serve static files
 const staticHandler = express.static(path.join(__dirname, "public"));
@@ -83,35 +88,6 @@ server.post("/logout", logoutUser);
 // server.get("/users", registerUser.get);
 
 //error handling
-server.use((request, response) => {
-  const html = `
-  <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Say Something Nice!</title>
-        <link href="public/css/style.css" type="text/css" rel="stylesheet"> 
-      </head>
-      <body>
-      <nav>
-        <ul>
-        <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/posts-add">add post</a>
-          </li>
-          
-        </ul>
-      </nav>
-      <main>
-      <h1>Not found</h1>
-        
-        </main>
-      </body>
-    </html>
-  `;
-  response.status(404).send(html);
-});
+server.use(notFound);
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

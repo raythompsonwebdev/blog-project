@@ -8,8 +8,9 @@ async function hashPassword(plaintextPassword) {
   return hash;
 }
 
-async function comparePassword(plaintextPassword, hash) {
-  const result = await bcrypt.compare(plaintextPassword, hash);
+function comparePassword(plaintextPassword, hash) {
+  const result = bcrypt.compareSync(plaintextPassword, hash);
+
   return result;
 }
 
