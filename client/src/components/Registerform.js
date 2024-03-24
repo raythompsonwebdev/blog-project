@@ -27,7 +27,9 @@ export default function Registerform() {
     }
 
     // eslint-disable-next-line func-style
-    async function submit() {
+
+    const submit = async (e) => {
+        e.preventDefault()
         try {
             const response = await fetch(
                 'http://localhost:8000/register_user',
@@ -45,6 +47,12 @@ export default function Registerform() {
                     }),
                 }
             )
+
+            if (!response.ok) {
+                throw new Error(
+                    `Network response was not ok - ${response.status}`
+                )
+            }
 
             const result = await response.json()
             // eslint-disable-next-line no-console

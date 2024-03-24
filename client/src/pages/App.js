@@ -5,10 +5,9 @@ import BlogsnippetContainer from '../components/BlogsnippetContainer'
 // eslint-disable-next-line func-style
 export default function App() {
     const [blogData, setblogData] = useState([])
-    // const [lastIndex, setLastIndex] = useState(0)
 
     useEffect(() => {
-        const fetchProducts = fetch(`http://localhost:8000/posts`)
+        const fetchProducts = fetch(`/posts`)
         fetchProducts
             .then((response) => {
                 if (!response.ok) {

@@ -9,7 +9,7 @@ export default function Blog() {
 
     useEffect(() => {
         async function fetchData() {
-            const result = await fetch(`http://localhost:8000/posts/${id}`)
+            const result = await fetch(`/posts/${id}`)
             const body = await result.json()
             setblogInfo(body)
         }
@@ -17,7 +17,7 @@ export default function Blog() {
         fetchData()
     }, [id])
 
-    const { author, blogtitle, blogpost, mood, date } = blogInfo
+    const { author, blogtitle, blogpost, mood, date, image } = blogInfo
 
     return (
         <main role="main">
@@ -26,7 +26,13 @@ export default function Blog() {
                     <h3 className="pb-4 mb-4 font-italic border-bottom">
                         From the Firehose
                     </h3>
-
+                    <img
+                        className="card-img-right flex-auto d-none d-md-block"
+                        alt="Thumbnail [200x250]"
+                        src={image}
+                        data-holder-rendered="true"
+                        width={850}
+                    />
                     <div className="blog-post">
                         <h2 className="blog-post-title">{blogtitle}</h2>
                         <p className="blog-post-meta">

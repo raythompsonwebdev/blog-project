@@ -35,7 +35,8 @@ export default function Blogform() {
     }
 
     // eslint-disable-next-line func-style
-    async function submit() {
+    const submit = async (e) => {
+        e.preventDefault()
         try {
             const response = await fetch('http://localhost:8000/create_post', {
                 method: 'POST',
@@ -52,6 +53,13 @@ export default function Blogform() {
                     submitted,
                 }),
             })
+
+            if (!response.ok) {
+                throw new Error(
+                    `Network response was not ok - ${response.status}`
+                )
+            }
+
             const result = await response.json()
             // eslint-disable-next-line no-console
             console.log('Success:', result)

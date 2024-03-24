@@ -5,17 +5,21 @@ import convertDate from '../helpers/helper'
 
 export default function Blogsnippet(props) {
     const {
-        // key,
-        // author,
-        blogpost,
+        id,
+        key,
+        author,
+        username,
         blogtitle,
+        blogpost,
+        mood,
         submitted,
-        // mood,
-        // username,
-        prodId,
+        image,
     } = {
         ...props,
     }
+
+    // eslint-disable-next-line no-console
+    console.log(author, username, mood, image)
 
     return (
         <div className="card flex-md-row mb-4 box-shadow h-md-250">
@@ -23,15 +27,16 @@ export default function Blogsnippet(props) {
                 className="card-img-right flex-auto d-none d-md-block"
                 data-src="holder.js/200x250?theme=thumb"
                 alt="Thumbnail [200x250]"
-                src=""
+                src={image}
                 data-holder-rendered="true"
+                width={400}
             />
             <div className="card-body d-flex flex-column align-items-start">
                 <strong className="d-inline-block mb-2 text-primary">
                     World
                 </strong>
                 <h3 className="mb-0">
-                    <Link className="text-dark" to={`/posts/${prodId}`}>
+                    <Link className="text-dark" to={`/posts/${id}`}>
                         {blogtitle}
                     </Link>
                 </h3>
@@ -39,7 +44,7 @@ export default function Blogsnippet(props) {
                 <div className="mb-1 text-muted">{convertDate(submitted)}</div>
                 <p className="card-text mb-auto">{blogpost}</p>
                 <br />
-                <Link to={`/posts/${prodId}`}>Continue reading</Link>
+                <Link to={`/posts/${id}`}>Continue reading</Link>
             </div>
         </div>
     )
@@ -51,6 +56,5 @@ Blogsnippet.defaultProps = {
     blogtitle: 'not found',
     blogpost: 'not found',
     mood: 'not found',
-    prodId: 1,
     submitted: 'not found',
 }

@@ -40,9 +40,6 @@ export default function Loginform() {
         }
     }
 
-    // eslint-disable-next-line no-console
-    console.log(errorMessage, passError)
-
     return (
         <form id="login" onSubmit={submit}>
             <div className="error_message">{errorMessage}</div>

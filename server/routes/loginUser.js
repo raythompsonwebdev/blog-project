@@ -27,7 +27,8 @@ async function loginUser(request, response) {
 
     generateToken(response, userInfo); //generate token and signed cookie
 
-    response.status(200).json({ message: "User found" });
+    // response.status(200).json({ message: "User found" });
+    response.redirect("/profile");
   } catch (err) {
     console.error("Login Error:", err);
     response.status(500).json({ error: "User Not found" });
