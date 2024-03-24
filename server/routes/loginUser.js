@@ -11,13 +11,13 @@ async function loginUser(request, response) {
     ]);
 
     if (results.rows.length === 0) {
-      return response.send({ error: "Email does not exist" });
+      return response.send({ error: "User email not found" });
     }
 
     const validPassword = comparePassword(password, results.rows[0].password);
 
     if (validPassword == false) {
-      return response.send({ passwordError: "Incorrect password" });
+      return response.send({ passwordError: "User password not found" });
     }
 
     const userInfo = {

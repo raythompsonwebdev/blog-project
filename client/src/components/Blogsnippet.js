@@ -26,7 +26,7 @@ export default function Blogsnippet(props) {
             <img
                 className="card-img-right flex-auto d-none d-md-block"
                 data-src="holder.js/200x250?theme=thumb"
-                alt="Thumbnail [200x250]"
+                alt={key}
                 src={image}
                 data-holder-rendered="true"
                 width={400}

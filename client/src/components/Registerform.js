@@ -9,6 +9,8 @@ export default function Registerform() {
     // set todays date
     const currDate = new Date().toISOString().slice(0, 10)
     const [dateSubmitted, setDate] = useState(currDate)
+    const [emailError, setEmailError] = useState('')
+    const [userError, setUserError] = useState('')
 
     function handleUsername(e) {
         setUsername(e.target.value)
@@ -55,8 +57,11 @@ export default function Registerform() {
             }
 
             const result = await response.json()
-            // eslint-disable-next-line no-console
-            console.log('Success:', result)
+
+            if (result) {
+                setEmailError(result.emailError)
+                setUserError(result.userError)
+            }
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error('Fetch Error : ', err.message)
@@ -66,8 +71,19 @@ export default function Registerform() {
 
     return (
         <form id="login" onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Register Here</h1>
-
+            <div
+                className="error_message"
+                style={{ color: 'red', height: '25px', lineHeight: '25px' }}
+            >
+                {emailError}
+            </div>
+            <div
+                className="error_message"
+                style={{ color: 'red', height: '25px', lineHieght: '25px' }}
+            >
+                {userError}
+            </div>
+            <br />
             <div className="form-group">
                 <label htmlFor="username">
                     Username:&#32;

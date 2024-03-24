@@ -6,9 +6,9 @@ import Blogsnippet from './Blogsnippet'
 export default function BlogsnippetContainer(props) {
     const { blogData } = props
 
-    const Blog = blogData.map((item, indx) => (
+    const Blog = blogData.map((item) => (
         <Blogsnippet
-            id={indx}
+            id={item.id}
             key={item.id}
             author={item.author}
             username={item.name}

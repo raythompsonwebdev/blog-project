@@ -3,8 +3,8 @@ import { React, useState } from 'react'
 export default function Loginform() {
     const [email, setUserEmail] = useState('')
     const [password, setUserPassword] = useState('')
-    const [errorMessage, setError] = useState()
-    const [passError, setPassError] = useState()
+    const [errorMessage, setError] = useState('')
+    const [passError, setPassError] = useState('')
 
     function handleUserEmail(e) {
         setUserEmail(e.target.value)
@@ -32,8 +32,10 @@ export default function Loginform() {
 
             // Assuming the server returns some data about the created user
             const data = await response.json()
-            setPassError(data?.passwordError)
-            setError(data?.error)
+            if (data) {
+                setPassError(data.passwordError)
+                setError(data.error)
+            }
         } catch (err) {
             // eslint-disable-next-line no-console
             console.log(err)
@@ -42,8 +44,19 @@ export default function Loginform() {
 
     return (
         <form id="login" onSubmit={submit}>
-            <div className="error_message">{errorMessage}</div>
-            <div className="error_message">{passError}</div>
+            <div
+                className="error_message"
+                style={{ color: 'red', height: '25px', lineHeight: '25px' }}
+            >
+                {errorMessage}
+            </div>
+            <div
+                className="error_message"
+                style={{ color: 'red', height: '25px', lineHieght: '25px' }}
+            >
+                {passError}
+            </div>
+            <br />
             <div className="form-group">
                 <label htmlFor="email">
                     Email:&#32;
@@ -73,7 +86,7 @@ export default function Loginform() {
                     />
                 </label>
             </div>
-
+            <br />
             <button className="w-100 btn btn-lg btn-primary" type="submit">
                 Login
             </button>
