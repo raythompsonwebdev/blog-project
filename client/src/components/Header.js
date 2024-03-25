@@ -1,7 +1,6 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import React from 'react'
 
-// eslint-disable-next-line func-style
 export default function Header() {
     return (
         <header className="blog-header py-3">

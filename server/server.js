@@ -11,6 +11,7 @@ import post from "./routes/post.js";
 import logoutUser from "./routes/logoutUser.js";
 import loginUser from "./routes/loginUser.js";
 import registerUser from "./routes/registerUser.js";
+import userProfile from "./routes/userProfile.js";
 import { notFound } from "./middleware/errorMiddleware.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -23,6 +24,9 @@ const PORT = 8000;
 
 //express server
 const server = express();
+
+// set express trust proxy to 1 , default is false.
+server.set("trust proxy", 1);
 
 // cookie parser
 server.use(cookieParser(process.env.COOKIE_SECRET));
@@ -84,8 +88,8 @@ server.post("/login", loginUser);
 // login logout route
 server.post("/logout", logoutUser);
 
-// // get users route
-// server.get("/users", registerUser.get);
+// user profile route
+server.get("/user", userProfile);
 
 //error handling
 server.use(notFound);

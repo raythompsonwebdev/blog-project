@@ -1,6 +1,17 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"]; //Bearer TOKEN
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.status(401).json({ error: "Null token" });
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
+    if (error) return res.status(403).json({ error: error.message });
+    req.user = user;
+    next();
+  });
+}
+
 const generateToken = (res, userId) => {
   const token = jwt.sign(userId, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: "30d",
@@ -48,4 +59,10 @@ function jwtTokens({ user_id, user_name, user_email }) {
   return { accessToken, refreshToken };
 }
 
-export { generateToken, verifyJwt, signJwtAccessToken, jwtTokens };
+export {
+  generateToken,
+  verifyJwt,
+  signJwtAccessToken,
+  jwtTokens,
+  authenticateToken,
+};

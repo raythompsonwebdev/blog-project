@@ -1,6 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { UserContext } from '../useContext/context'
 
 export default function Profile() {
+    const [message, setMessage] = useState('')
+    const [userName, setUserName] = useState('')
+    const { loggedIn, setLoggedIn } = useContext(UserContext)
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const response = await fetch('/user', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const result = await response.json()
+
+            if (result) {
+                setLoggedIn(result.loggedIn)
+                setMessage(result.message)
+                setUserName(result.token?.username)
+            }
+        }
+
+        fetchUser()
+    }, [setLoggedIn])
+
+    // eslint-disable-next-line no-console
+    console.log(message, userName)
+    // eslint-disable-next-line no-console
+    console.log(loggedIn)
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
@@ -12,18 +41,32 @@ export default function Profile() {
                                 <div className="col-md-4">
                                     {/* <img src="https://via.placeholder.com/150" alt="User Avatar" className="img-fluid rounded-circle"> */}
                                 </div>
-                                <div className="col-md-8">
-                                    <h4>Name: John Doe</h4>
-                                    <p>Email: johndoe@example.com</p>
-                                    <p>Location: New York, USA</p>
-                                    <p>Joined: January 1, 2022</p>
-                                    <button
-                                        type="submit"
-                                        className="btn btn-primary"
-                                    >
-                                        Edit Profile
-                                    </button>
-                                </div>
+                                {!loggedIn ? (
+                                    <div className="col-md-8">
+                                        <h4>Logged out</h4>
+                                        <p>Please login to view profile</p>
+
+                                        <button
+                                            type="submit"
+                                            className="btn btn-primary"
+                                        >
+                                            Log In
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="col-md-8">
+                                        <h4>Name: John Doe</h4>
+                                        <p>Email: johndoe@example.com</p>
+                                        <p>Location: New York, USA</p>
+                                        <p>Joined: January 1, 2022</p>
+                                        <button
+                                            type="submit"
+                                            className="btn btn-primary"
+                                        >
+                                            Edit Profile
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
