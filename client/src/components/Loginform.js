@@ -17,7 +17,7 @@ export default function Loginform() {
     const submit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch('http://localhost:8000/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

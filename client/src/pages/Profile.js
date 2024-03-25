@@ -55,7 +55,7 @@ export default function Profile() {
                                     </div>
                                 ) : (
                                     <div className="col-md-8">
-                                        <h4>Name: John Doe</h4>
+                                        <h4>Name: {userName}</h4>
                                         <p>Email: johndoe@example.com</p>
                                         <p>Location: New York, USA</p>
                                         <p>Joined: January 1, 2022</p>

@@ -38,7 +38,7 @@ export default function Blogform() {
     const submit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch('http://localhost:8000/create_post', {
+            const response = await fetch('/create_post', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

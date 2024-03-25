@@ -34,60 +34,79 @@ export default function MainNav() {
     // eslint-disable-next-line no-console
     console.log(loggedIn)
     return (
-        <nav
-            className="navbar navbar-expand-md navbar-light bg-light"
-            aria-label="Fourth navbar example"
-        >
-            <div className="container-fluid">
-                <div className="collapse navbar-collapse" id="navbarsExample04">
-                    {!loggedIn ? (
-                        <ul className="navbar-nav me-auto ">
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link active"
-                                    aria-current="page"
-                                    to="/"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link active"
-                                    aria-current="page"
-                                    to="/profile"
-                                >
-                                    Profile
-                                </Link>
-                            </li>
-                        </ul>
-                    ) : (
-                        <ul className="navbar-nav me-auto ">
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link active"
-                                    aria-current="page"
-                                    to="/"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/create-post">
-                                    Create Blog
-                                </Link>
-                            </li>
-                        </ul>
-                    )}
-                    <form>
-                        <input
-                            className="form-control"
-                            type="text"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                    </form>
-                </div>
+        <nav className="py-2 bg-light border-bottom">
+            <div className="container d-flex flex-wrap">
+                {!loggedIn ? (
+                    <ul className="nav me-auto">
+                        <li className="nav-item">
+                            <Link
+                                to="/"
+                                className="nav-link link-dark px-2 active"
+                                aria-current="page"
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to="/user-profile"
+                                className="nav-link link-dark px-2"
+                            >
+                                Profile
+                            </Link>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="nav me-auto">
+                        <li className="nav-item">
+                            <Link
+                                to="/"
+                                className="nav-link link-dark px-2 active"
+                                aria-current="page"
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to="/user-profile"
+                                className="nav-link link-dark px-2"
+                            >
+                                Profile
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to="/create-blog"
+                                className="nav-link link-dark px-2"
+                            >
+                                Create Blog
+                            </Link>
+                        </li>
+                    </ul>
+                )}
+                {!loggedIn ? (
+                    <ul className="nav">
+                        <li className="nav-item">
+                            <Link
+                                to="/login"
+                                className="nav-link link-dark px-2"
+                            >
+                                Login
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to="/register"
+                                className="nav-link link-dark px-2"
+                            >
+                                Sign up
+                            </Link>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="nav">{}</ul>
+                )}
             </div>
         </nav>
     )

@@ -3,27 +3,28 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <header className="blog-header py-3">
-            <div className="row flex-nowrap justify-content-between align-items-center">
-                <div className="col-4 pt-1">
-                    <Link className="text-muted" to="/login">
-                        Login
-                    </Link>
-                </div>
-                <div className="col-4 text-center">
-                    <Link className="blog-header-logo text-dark" to="#">
-                        Large
-                    </Link>
-                </div>
-                <div className="col-4 d-flex justify-content-end align-items-center">
+        <header>
+            <header className="py-3 mb-4 border-bottom">
+                <div className="container d-flex flex-wrap justify-content-center">
                     <Link
-                        className="btn btn-sm btn-outline-secondary"
-                        to="/register"
+                        to="/"
+                        className="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
                     >
-                        Register
+                        <svg className="bi me-2" width="40" height="32">
+                            {/* <use xlink:href="#bootstrap"></use> */}
+                        </svg>
+                        <span className="fs-4">Double header</span>
                     </Link>
+                    <form className="col-12 col-lg-auto mb-3 mb-lg-0">
+                        <input
+                            type="search"
+                            className="form-control"
+                            placeholder="Search..."
+                            aria-label="Search"
+                        />
+                    </form>
                 </div>
-            </div>
+            </header>
         </header>
     )
 }

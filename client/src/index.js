@@ -33,7 +33,11 @@ root.render(
                         />
                         <Route path="/login" exact element={<Login />} />
                         <Route path="/register" exact element={<Register />} />
-                        <Route path="/profile" exact element={<Profile />} />
+                        <Route
+                            path="/user-profile"
+                            exact
+                            element={<Profile />}
+                        />
                     </Routes>
                     <Footer />
                 </div>
