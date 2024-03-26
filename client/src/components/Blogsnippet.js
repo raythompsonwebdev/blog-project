@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 // import PropTypes from "prop-types";
 import { Link } from 'react-router-dom'
@@ -19,7 +20,7 @@ export default function Blogsnippet(props) {
     }
 
     // eslint-disable-next-line no-console
-    console.log(author, username, mood, image)
+    // console.log(author, username, mood, image)
 
     return (
         <div className="card flex-md-row mb-4 box-shadow h-md-250">

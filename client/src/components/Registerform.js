@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from 'react'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // eslint-disable-next-line func-style
 export default function Registerform() {
@@ -12,6 +12,7 @@ export default function Registerform() {
     const [dateSubmitted, setDate] = useState(currDate)
     const [emailError, setEmailError] = useState('')
     const [userError, setUserError] = useState('')
+    const navigate = useNavigate()
 
     function handleUsername(e) {
         setUsername(e.target.value)
@@ -63,12 +64,12 @@ export default function Registerform() {
                 setEmailError(result.emailError)
                 setUserError(result.userError)
             }
-            redirect('/')
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error('Fetch Error : ', err.message)
             // throw new Error(err.message);
         }
+        navigate('/')
     }
 
     return (

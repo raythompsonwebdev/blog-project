@@ -1,11 +1,12 @@
 import { React, useState } from 'react'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Loginform() {
     const [email, setUserEmail] = useState('')
     const [password, setUserPassword] = useState('')
     const [errorMessage, setError] = useState('')
     const [passError, setPassError] = useState('')
+    const navigate = useNavigate()
 
     function handleUserEmail(e) {
         setUserEmail(e.target.value)
@@ -37,7 +38,7 @@ export default function Loginform() {
                 setPassError(data.passwordError)
                 setError(data.error)
             }
-            redirect('/user')
+            navigate('/user') // Redirect to new page
         } catch (err) {
             // eslint-disable-next-line no-console
             console.log(err)

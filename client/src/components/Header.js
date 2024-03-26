@@ -10,10 +10,7 @@ export default function Header() {
                         to="/"
                         className="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
                     >
-                        <svg className="bi me-2" width="40" height="32">
-                            {/* <use xlink:href="#bootstrap"></use> */}
-                        </svg>
-                        <span className="fs-4">Double header</span>
+                        <span className="fs-4">Blog</span>
                     </Link>
                     <form className="col-12 col-lg-auto mb-3 mb-lg-0">
                         <input

@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Blogform() {
     const [author, setAuthor] = useState('')
@@ -9,6 +10,7 @@ export default function Blogform() {
 
     const currDate = new Date().toISOString().slice(0, 10)
     const [submitted, setDate] = useState(currDate)
+    const navigate = useNavigate()
 
     function handleUsername(e) {
         setUsername(e.target.value)
@@ -67,6 +69,7 @@ export default function Blogform() {
             // eslint-disable-next-line no-console
             console.error('Fetch Error : ', err.message)
         }
+        navigate('/')
     }
 
     return (
