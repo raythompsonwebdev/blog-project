@@ -49,7 +49,7 @@ export default function MainNav() {
                         </li>
                         <li className="nav-item">
                             <Link
-                                to="/user-profile"
+                                to="/user"
                                 className="nav-link link-dark px-2"
                             >
                                 Profile
@@ -69,7 +69,7 @@ export default function MainNav() {
                         </li>
                         <li className="nav-item">
                             <Link
-                                to="/user-profile"
+                                to="/user"
                                 className="nav-link link-dark px-2"
                             >
                                 Profile
@@ -77,7 +77,7 @@ export default function MainNav() {
                         </li>
                         <li className="nav-item">
                             <Link
-                                to="/create-blog"
+                                to="/create-post"
                                 className="nav-link link-dark px-2"
                             >
                                 Create Blog
@@ -105,7 +105,16 @@ export default function MainNav() {
                         </li>
                     </ul>
                 ) : (
-                    <ul className="nav">{}</ul>
+                    <ul className="nav">
+                        <li className="nav-item">
+                            <Link
+                                to="/logout"
+                                className="nav-link link-dark px-2"
+                            >
+                                Logout
+                            </Link>
+                        </li>
+                    </ul>
                 )}
             </div>
         </nav>

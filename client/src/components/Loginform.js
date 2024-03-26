@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { redirect } from 'react-router-dom'
 
 export default function Loginform() {
     const [email, setUserEmail] = useState('')
@@ -36,6 +37,7 @@ export default function Loginform() {
                 setPassError(data.passwordError)
                 setError(data.error)
             }
+            redirect('/user')
         } catch (err) {
             // eslint-disable-next-line no-console
             console.log(err)

@@ -1,6 +1,6 @@
 // import db  from "../database/connection.js";
 
-async function logoutUser(request, response) {
+function logoutUser(request, response) {
   response.cookie("jwt", "", {
     httpOnly: true,
     expires: new Date(0),

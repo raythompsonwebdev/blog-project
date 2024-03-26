@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from 'react'
+import { redirect } from 'react-router-dom'
 
 // eslint-disable-next-line func-style
 export default function Registerform() {
@@ -62,6 +63,7 @@ export default function Registerform() {
                 setEmailError(result.emailError)
                 setUserError(result.userError)
             }
+            redirect('/')
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error('Fetch Error : ', err.message)
