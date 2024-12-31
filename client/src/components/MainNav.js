@@ -23,7 +23,7 @@ export default function MainNav() {
             if (result) {
                 setLoggedIn(result.loggedIn)
                 setMessage(result.message)
-                setUserName(result.token?.username)
+                setUserName(result.token)
             }
         }
         fetchUser()
