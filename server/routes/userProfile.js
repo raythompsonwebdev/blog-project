@@ -6,6 +6,7 @@ export default async function userProfile(request, response) {
     return response.status(401).json({
       loggedIn: false,
       message: "user not authenticated",
+      token: "",
     });
   } else {
     const verToke = verifyJwt(jwt);

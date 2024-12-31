@@ -4,34 +4,105 @@
     "private": true,
     "proxy": "http://localhost:8000/",
     "dependencies": {
-        "@babel/core": "^7.24.0",
-        "@testing-library/jest-dom": "^6.4.2",
-        "@testing-library/react": "^14.2.1",
-        "@testing-library/user-event": "^14.5.2",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
         "bootstrap": "^5.3.3",
-        "eslint-config-airbnb": "^19.0.4",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-babel": "^5.3.1",
-        "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-jsx": "^0.1.0",
-        "eslint-plugin-prettier": "^5.1.3",
-        "flow-bin": "^0.231.0",
+        "flow-bin": "^0.235.1",
         "prettier": "^3.2.5",
         "prop-types": "^15.8.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-router-dom": "^6.22.3",
-        "react-scripts": "^5.0.1",
-        "sass": "^1.72.0",
-        "web-vitals": "^3.5.2"
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.23.0",
+        "react-scripts": "5.0.1",
+        "sass": "^1.76.0",
+        "web-vitals": "^2.1.4"
+    },
+    "overrides": {
+        "nth-check": "latest",
+        "postcss": "latest"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "lint": "eslint src/**/*.js",
-        "flow": "flow"
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ],
+        "rules": {
+            "react/jsx-filename-extension": [
+                1,
+                {
+                    "extensions": [
+                        ".js",
+                        ".jsx"
+                    ]
+                }
+            ],
+            "strict": [
+                "error",
+                "global"
+            ],
+            "prefer-destructuring": [
+                "error",
+                {
+                    "array": true,
+                    "object": true
+                },
+                {
+                    "enforceForRenamedProperties": true
+                }
+            ],
+            "new-cap": "error",
+            "no-invalid-this": "error",
+            "prefer-const": "error",
+            "no-new-func": "error",
+            "prettier/prettier": "error",
+            "no-unused-vars": "warn",
+            "no-console": "warn",
+            "func-names": "warn",
+            "no-process-exit": "warn",
+            "object-shorthand": "warn",
+            "class-methods-use-this": "error",
+            "no-param-reassign": "error",
+            "no-var": "error",
+            "prefer-arrow-callback": "warn",
+            "prefer-rest-params": "warn",
+            "arrow-parens": [
+                "error",
+                "always"
+            ],
+            "arrow-body-style": [
+                "error",
+                "as-needed"
+            ],
+            "no-eval": "error",
+            "no-implied-eval": "error",
+            "eqeqeq": "error",
+            "no-with": "error",
+            "no-plusplus": "error",
+            "react-hooks/rules-of-hooks": "error",
+            "react-hooks/exhaustive-deps": "warn",
+            "jsx-a11y/label-has-associated-control": [
+                2,
+                {
+                    "labelComponents": [
+                        "FormLabel"
+                    ],
+                    "labelAttributes": [
+                        "label"
+                    ],
+                    "controlComponents": [
+                        "input"
+                    ],
+                    "depth": 2
+                }
+            ]
+        }
     },
     "browserslist": {
         "production": [
@@ -44,13 +115,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "@babel/eslint-parser": "^7.23.10",
-        "@babel/preset-env": "^7.24.0",
-        "babel-preset-react-app": "^10.0.1",
-        "eslint": "^8.57.0",
-        "eslint-config-react-app": "^7.0.1",
-        "eslint-plugin-react-hooks": "^4.6.0"
     }
 }

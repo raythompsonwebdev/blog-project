@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function Loginform() {
@@ -34,16 +34,34 @@ export default function Loginform() {
 
             // Assuming the server returns some data about the created user
             const data = await response.json()
-            if (data) {
-                setPassError(data.passwordError)
-                setError(data.error)
+            if (!response.ok) {
+                // eslint-disable-next-line no-console
+                console.log(response.status)
             }
-            navigate('/user') // Redirect to new page
+            const { passwordError, error } = data
+
+            if (data) {
+                setPassError(passwordError)
+                setError(error)
+            }
         } catch (err) {
             // eslint-disable-next-line no-console
             console.log(err)
         }
+
+        if (errorMessage === true || passError === 'user authenticated') {
+            navigate('/user') // Redirect to new page
+        }
     }
+
+    // useEffect(() => {
+    //     if (errorMessage === true || passError === 'user authenticated') {
+    //         navigate('/user') // Redirect to new page
+    //     }
+    // }, [errorMessage, passError, navigate])
+
+    // eslint-disable-next-line no-console
+    console.log(errorMessage, passError)
 
     return (
         <form id="login" onSubmit={submit}>
