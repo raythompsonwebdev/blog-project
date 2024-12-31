@@ -21,6 +21,7 @@ async function loginUser(request, response) {
     }
 
     const userInfo = {
+      username: results.rows[0].username,
       email: results.rows[0].email,
       password: results.rows[0].password,
     };
